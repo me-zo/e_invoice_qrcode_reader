@@ -4,13 +4,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../features/home/presentation/manager/home_cubit.dart';
-import '../features/home/presentation/widgets/splash.dart';
-import '../features/route_generator.dart';
+import '../core/localization/app_localization.dart';
+import '../core/localization/language_notifier.dart';
+import '../presentation/home/presentation/manager/home_cubit.dart';
+import '../presentation/home/presentation/widgets/splash.dart';
+import '../presentation/route_generator.dart';
 import '../main.dart';
-import '../theme/app_theme.dart';
-import 'core/localization/app_localization.dart';
-import 'core/localization/language_notifier.dart';
+import 'app_theme.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatefulWidget {
@@ -30,7 +30,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (_) => widget.currentLocale,
       child: Consumer<AppLanguage>(
         builder: (context, model, child) {

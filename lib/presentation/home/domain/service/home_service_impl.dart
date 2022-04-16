@@ -1,6 +1,6 @@
 
 
-import '../../../../app/core/errors/error_handler.dart';
+import '../../../../core/errors/error_handler.dart';
 import 'home_service.dart';
 
 class HomeServiceImpl extends HomeService with ErrorHandler {

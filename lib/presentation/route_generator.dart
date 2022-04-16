@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home/presentation/home_page.dart';
-import 'home/presentation/widgets/unimplemented_page.dart';
+import 'home/presentation/home_controller.dart';
 
 
 class RouteGenerator {
@@ -12,10 +11,8 @@ class RouteGenerator {
       settings: routeSettings,
       builder: (BuildContext context) {
         switch (routeSettings.name) {
-          case UnImplementedPage.routeName:
-            return const UnImplementedPage();
           default:
-            return const HomePage();
+            return const HomeController();
         }
       },
     );

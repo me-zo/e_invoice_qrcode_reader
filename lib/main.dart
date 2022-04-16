@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'app/app.dart';
-import 'app/core/dependency_registrar/app_dependencies.dart';
-import 'app/core/localization/language_notifier.dart';
+import 'core/dependency_registrar/app_dependencies.dart';
+import 'core/localization/language_notifier.dart';
 
 final sl = GetIt.instance;
 void main() async {

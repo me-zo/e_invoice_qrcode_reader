@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../home_page.dart';
+import '../home_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     //it doesn't matter where we push since we control the base of the route generator
-    Future.delayed(const Duration(seconds: 2), () => Navigator.pushReplacementNamed(context, HomePage.routeName));
+    Future.delayed(const Duration(seconds: 2), () => Navigator.pushReplacementNamed(context, HomeController.routeName));
     super.initState();
   }
 
