@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import '../errors/exceptions.dart';
 import 'connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -90,7 +89,7 @@ class HttpClientImpl extends HttpClient {
   /// helper function to check if mobile has connection
   Future<void> _throwExceptionIfNoConnection() async {
     if (!await connectionChecker.isConnected()) {
-      throw ConnectionUnavailableException();
+      throw Exception("No Internet Connection");
     }
   }
 }

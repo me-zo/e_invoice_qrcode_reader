@@ -18,25 +18,35 @@ class HomeController extends StatefulWidget {
 class _HomeControllerState extends State<HomeController> with FunctionsHome {
   @override
   void initState() {
-    // Git List for home page
-    BlocProvider.of<HomeCubit>(context).refreshHomePage();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(),
-      body: BlocConsumer<HomeCubit, HomeState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          if (state is ShowList) {
-            return const HomePage();
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+    return DefaultTabController(
+      initialIndex: 1,
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(onPressed: (){}, icon: const Icon(Icons.contact_support)),
+          bottom: const TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.history)),
+              Tab(icon: Icon(Icons.qr_code_scanner)),
+              Tab(icon: Icon(Icons.info_outline)),
+            ],
+          ),
+          actions: [
+            IconButton(onPressed: (){}, icon: const Icon(Icons.settings))
+          ],
+        ),
+        body: const TabBarView(
+          children: [
+            Center(child: Text("History"),),
+            HomePage(),
+            Center(child: Text("About Us"),),
+          ],
+        ),
       ),
     );
   }

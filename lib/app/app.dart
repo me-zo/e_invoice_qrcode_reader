@@ -7,10 +7,10 @@ import 'package:responsive_framework/responsive_framework.dart';
 import '../core/localization/app_localization.dart';
 import '../core/localization/language_notifier.dart';
 import '../presentation/home/presentation/manager/home_cubit.dart';
-import '../presentation/home/presentation/widgets/splash.dart';
+import '../presentation/home/presentation/widgets/splash_page.dart';
 import '../presentation/route_generator.dart';
 import '../main.dart';
-import 'app_theme.dart';
+import 'app_theme/app_theme.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatefulWidget {

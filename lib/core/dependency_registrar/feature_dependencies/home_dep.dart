@@ -12,6 +12,8 @@ Future<void> homeDependencies(GetIt sl) async {
   );
 
   sl.registerFactory(
-        () => HomeCubit(),
+        () => HomeCubit(
+          homeService: sl(),
+        ),
   );
 }

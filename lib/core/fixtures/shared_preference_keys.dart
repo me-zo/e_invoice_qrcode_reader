@@ -1,3 +1,4 @@
-const tileIdFixture = "tileIdFixture";
-const tileTitleFixture = "tileTitleFixture";
-const tileDescriptionFixture = "tileDescriptionFixture";
+class SharedPreferenceKeys {
+  static const tileIdFixture = "tileIdFixture";
+  static const tileTitleFixture = "tileTitleFixture";
+}

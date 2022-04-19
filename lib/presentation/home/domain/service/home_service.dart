@@ -1,5 +1,10 @@
 
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/failures/failures.dart';
+import '../models/tlv.dart';
+
 abstract class HomeService {
-  //void saveTiles({required List<NavigatorTileModel> tiles});
+  Either<Failure, List<TlvModel>> validateQrCode(String scannedString);
 }
 

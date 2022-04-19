@@ -7,7 +7,6 @@ import '../localization/app_localization.dart';
 mixin AppSnackBar {
 
   void errorSnackBar(BuildContext context, {String message = ""}) {
-    log(message);
     ScaffoldMessenger.of(context).showSnackBar(_snackBarWidget(
       context,
       message: message,

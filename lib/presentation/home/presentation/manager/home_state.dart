@@ -5,9 +5,20 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-/// **shows** a list of [TileModel]
-class ShowList extends HomeState {
-  ShowList({required this.tiles});
-  final List<TileModel> tiles;
+class ScanQrCode extends HomeState {
+  ScanQrCode({required this.scannedString});
+  final String scannedString;
+}
 
+class ShowError extends HomeState {
+  ShowError({required this.message});
+  final String message;
+}
+
+class Loading extends HomeState {
+}
+
+class DisplayScannedInfo extends HomeState {
+  DisplayScannedInfo({required this.info});
+  final List<TlvModel> info;
 }
