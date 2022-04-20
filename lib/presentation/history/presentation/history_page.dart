@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'manager/functions_home.dart';
-import 'widgets/home_page.dart';
+import 'manager/functions_history.dart';
+import 'widgets/history_screen.dart';
 
-class HomeController extends StatefulWidget {
-  const HomeController({
+class HistoryPage extends StatefulWidget {
+  const HistoryPage({
     Key? key,
   }) : super(key: key);
-  static const routeName = "/HomePage";
+  static const routeName = "/HistoryPage";
 
   @override
-  State<HomeController> createState() => _HomeControllerState();
+  State<HistoryPage> createState() => _HistoryPageState();
 }
 
-class _HomeControllerState extends State<HomeController> with FunctionsHome {
+class _HistoryPageState extends State<HistoryPage> with FunctionsHistory {
   @override
   void initState() {
     super.initState();
@@ -41,7 +41,7 @@ class _HomeControllerState extends State<HomeController> with FunctionsHome {
         body: const TabBarView(
           children: [
             Center(child: Text("History"),),
-            HomePage(),
+            HistoryScreen(),
             Center(child: Text("About Us"),),
           ],
         ),

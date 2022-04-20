@@ -7,7 +7,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import '../core/localization/app_localization.dart';
 import '../core/localization/language_notifier.dart';
 import '../presentation/home/presentation/manager/home_cubit.dart';
-import '../presentation/home/presentation/widgets/splash_page.dart';
+import '../presentation/home/presentation/screens/splash.dart';
 import '../presentation/route_generator.dart';
 import '../main.dart';
 import 'app_theme/app_theme.dart';
@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> {
               theme: AppTheme.darkTheme,
               darkTheme: AppTheme.darkTheme,
               onGenerateRoute: RouteGenerator(),
-              home: const SplashScreen(),
+              home: const Splash(),
             ),
           );
         },

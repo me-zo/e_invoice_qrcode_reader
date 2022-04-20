@@ -1,15 +1,15 @@
-import 'scanned_qr_preview_page.dart';
+import 'scanned_qr_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class ScanQrCodePage extends StatefulWidget {
-  const ScanQrCodePage({Key? key}) : super(key: key);
+class ScanQrCode extends StatefulWidget {
+  const ScanQrCode({Key? key}) : super(key: key);
 
   @override
-  State<ScanQrCodePage> createState() => _ScanQrCodePageState();
+  State<ScanQrCode> createState() => _ScanQrCodeState();
 }
 
-class _ScanQrCodePageState extends State<ScanQrCodePage> {
+class _ScanQrCodeState extends State<ScanQrCode> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   Barcode? result;
@@ -35,7 +35,7 @@ class _ScanQrCodePageState extends State<ScanQrCodePage> {
                         Future.delayed(Duration.zero,
                           () => Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (context) => ScannedQrPreviewPage(
+                              builder: (context) => ScannedQrPreview(
                                   scannedData: result!.code ?? ""),
                             ),
                           ),

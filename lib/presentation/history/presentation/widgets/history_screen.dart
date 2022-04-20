@@ -1,17 +1,16 @@
 import '../../../../app/app_theme/button_styles.dart';
-import 'scan_qr_code_page.dart';
 import 'package:flutter/material.dart';
 
-import '../manager/functions_home.dart';
+import '../manager/functions_history.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HistoryScreen extends StatefulWidget {
+  const HistoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HistoryScreen> createState() => _HistoryScreenState();
 }
 
-class _HomePageState extends State<HomePage> with FunctionsHome {
+class _HistoryScreenState extends State<HistoryScreen> with FunctionsHistory {
   @override
   void initState() {
     // TODO: implement initState
@@ -25,8 +24,7 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const ScanQrCodePage())),
+          onPressed: () {},
           icon: const _ScanViaCameraIcon(),
           iconSize: 170,
           color: Colors.white.withOpacity(0.3),

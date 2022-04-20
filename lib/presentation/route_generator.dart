@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home/presentation/home_controller.dart';
+import 'home/presentation/home_page.dart';
 
 
 class RouteGenerator {
@@ -12,7 +12,7 @@ class RouteGenerator {
       builder: (BuildContext context) {
         switch (routeSettings.name) {
           default:
-            return const HomeController();
+            return const HomePage();
         }
       },
     );

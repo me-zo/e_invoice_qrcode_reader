@@ -5,18 +5,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/models/tlv.dart';
 
-class ScannedQrPreviewPage extends StatefulWidget {
-  const ScannedQrPreviewPage({
+class ScannedQrPreview extends StatefulWidget {
+  const ScannedQrPreview({
     Key? key,
     required this.scannedData,
   }) : super(key: key);
   final String scannedData;
 
   @override
-  State<ScannedQrPreviewPage> createState() => _ScannedQrPreviewPageState();
+  State<ScannedQrPreview> createState() => _ScannedQrPreviewState();
 }
 
-class _ScannedQrPreviewPageState extends State<ScannedQrPreviewPage>
+class _ScannedQrPreviewState extends State<ScannedQrPreview>
     with AppSnackBar {
   @override
   void initState() {
