@@ -1,5 +1,4 @@
-import 'package:e_invoice_qrcode_reader/presentation/home/presentation/widgets/scanned_qr_preview_page.dart';
-import 'package:flutter/foundation.dart';
+import 'scanned_qr_preview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 

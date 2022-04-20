@@ -1,5 +1,5 @@
-import 'package:e_invoice_qrcode_reader/core/common/app_snack_bar.dart';
-import 'package:e_invoice_qrcode_reader/presentation/home/presentation/manager/home_cubit.dart';
+import '../../../../core/common/app_snack_bar.dart';
+import '../manager/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

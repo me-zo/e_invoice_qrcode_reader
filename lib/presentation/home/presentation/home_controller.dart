@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'manager/functions_home.dart';
-import 'manager/home_cubit.dart';
 import 'widgets/home_page.dart';
 
 class HomeController extends StatefulWidget {
