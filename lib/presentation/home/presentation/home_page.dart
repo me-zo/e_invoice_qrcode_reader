@@ -1,3 +1,4 @@
+import 'package:e_invoice_qrcode_reader/presentation/history/presentation/history_page.dart';
 import 'package:flutter/material.dart';
 
 import 'manager/functions_home.dart';
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
         ),
         body: const TabBarView(
           children: [
-            Center(child: Text("History"),),
+            HistoryPage(),
             Home(),
             Center(child: Text("About Us"),),
           ],

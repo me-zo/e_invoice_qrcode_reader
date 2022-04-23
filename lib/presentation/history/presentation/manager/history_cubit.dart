@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import '../../../home/domain/models/tlv.dart';
+import 'package:e_invoice_qrcode_reader/presentation/history/domain/models/invoice_list_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/service/history_service.dart';
@@ -11,12 +11,12 @@ class HistoryCubit extends Cubit<HistoryState> {
 
   HistoryCubit({required this.historyService}) : super(HistoryInitial());
 
-  void validateQrCode({required String scannedString}) {
+  void displayInvoiceList() {
     emit(Loading());
-    var result = historyService.validateQrCode(scannedString);
+    var result = historyService.invoiceList();
     result.fold(
       (l) => emit(ShowError(message: l.message)),
-      (r) {},
+      (r) => emit(DisplayScannedInfo(info: r)),
     );
   }
 }

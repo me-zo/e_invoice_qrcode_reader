@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_invoice_qrcode_reader/presentation/home/domain/models/tlv.dart';
+import 'package:e_invoice_qrcode_reader/core/common/models/invoice_model.dart';
 import 'package:e_invoice_qrcode_reader/presentation/home/domain/service/home_service.dart';
 import 'package:flutter/material.dart';
 

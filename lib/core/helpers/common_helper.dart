@@ -4,7 +4,7 @@ mixin CommonHelper {
   /// checks if [text] is a valid email  address
   ///
   /// returns `true` if [text] is a valid Email and `false` otherwise
-  bool validateEmail({required String? text}) {
+  static bool validateEmail({required String? text}) {
     ///follows nopcommerce Standards
     final RegExp _regExp = RegExp(
         r"""^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0
@@ -29,7 +29,8 @@ mixin CommonHelper {
   ///
   /// [positiveOnly] can be overridden to check for only positive values
   ///
-  bool validateNumeric({required String? text, bool positiveOnly = false}) {
+  static bool validateNumeric(
+      {required String? text, bool positiveOnly = false}) {
     final RegExp _regExp = RegExp(
         r"^[+-]?([0-9]+[.])?[0-9]+$"); //matches "[int]", "[int].[int]", and "-[int].[int]"
     final RegExp _regExpPositive =
@@ -47,7 +48,7 @@ mixin CommonHelper {
 
   /// returns null by default and a localized error message if the [text] is not a valid Url
   ///
-  bool validateUrl({required String? text}) {
+  static bool validateUrl({required String? text}) {
     final RegExp _regExp = RegExp(
         r"[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)");
     return text == null || text.isEmpty
@@ -63,16 +64,21 @@ mixin CommonHelper {
   ///
   /// a time based date rather than a year based date
   ///
-  String formatDate({required DateTime date, bool timeOriented = false}) {
+  static String formatDate({
+    required DateTime date,
+    bool timeOnly = false,
+    bool withTime = false,
+  }) {
     //following the format in nopcommerce
-    final DateFormat formatter = timeOriented
-        ? DateFormat('yyyy/MM/dd hh:mm a')
-        : DateFormat('yyyy/MM/dd');
+    final DateFormat formatter = withTime
+        ? DateFormat('yyyy - MM - dd hh:mm a')
+        : timeOnly
+        ? DateFormat('hh:mm a')
+        : DateFormat('yyyy - MM - dd');
     return formatter.format(date);
   }
 
-  static DateTime get emptyDateTime =>
-      DateTime.parse("0001-01-01T01:01:00.000Z");
+  static DateTime get emptyDate => DateTime.parse("0001-01-01T01:01:00.000Z");
 
-  static String get emptyDateTimeString => "0001-01-01T01:01:00.000Z";
+  static String get emptyDateString => "0001-01-01T01:01:00.000Z";
 }

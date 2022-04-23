@@ -1,0 +1,65 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "4:5775700175303744119",
+      "lastPropertyId": "6:7885386062667129486",
+      "name": "TlvEntity",
+      "properties": [
+        {
+          "id": "1:2685331226085625423",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "4:1821576645413239433",
+          "name": "value",
+          "type": 9
+        },
+        {
+          "id": "5:6474430153452375021",
+          "name": "dateScanned",
+          "type": 10
+        },
+        {
+          "id": "6:7885386062667129486",
+          "name": "groupId",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:5775700175303744119",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    1686007958408075758,
+    5593777503126438959,
+    3225870650005892902
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    4984450478450664888,
+    8600792188938400062,
+    1284697358240427423,
+    5208607873051352289,
+    6508156047857760138,
+    5557872305386618140,
+    2789725487327336529,
+    331575883384146589,
+    7763889445190746014,
+    6459705549620760073,
+    418906984777467936,
+    359902004045315176,
+    8729807736525427156
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

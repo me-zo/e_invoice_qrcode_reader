@@ -1,9 +1,10 @@
-import '../../../../core/common/app_snack_bar.dart';
-import '../manager/home_cubit.dart';
+import 'package:e_invoice_qrcode_reader/core/common/widgets/scanned_details_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/models/tlv.dart';
+import '../../../../core/common/models/invoice_model.dart';
+import '../../../../core/common/widgets/app_snack_bar.dart';
+import '../manager/home_cubit.dart';
 
 class ScannedQrPreview extends StatefulWidget {
   const ScannedQrPreview({
@@ -16,8 +17,7 @@ class ScannedQrPreview extends StatefulWidget {
   State<ScannedQrPreview> createState() => _ScannedQrPreviewState();
 }
 
-class _ScannedQrPreviewState extends State<ScannedQrPreview>
-    with AppSnackBar {
+class _ScannedQrPreviewState extends State<ScannedQrPreview> with AppSnackBar {
   @override
   void initState() {
     BlocProvider.of<HomeCubit>(context).validateQrCode(
@@ -42,48 +42,9 @@ class _ScannedQrPreviewState extends State<ScannedQrPreview>
                 ],
               );
             } else if (state is ShowError) {
-              return Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey.shade700,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        state.message,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.red,
-                        ),
-                      ),
-                    ),
-                    const Divider(),
-                    Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          alignment: Alignment.centerLeft,
-                          child: const Text(
-                            "QR Code Data:",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            widget.scannedData,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              return _WrongScannedInfo(
+                scannedData: widget.scannedData,
+                errorMessage: state.message,
               );
             } else {
               return Center(
@@ -109,7 +70,7 @@ class _ScannedQrPreviewState extends State<ScannedQrPreview>
 }
 
 class _ScannedDetailsCard extends StatelessWidget {
-  final List<TlvModel> info;
+  final InvoiceModel info;
 
   const _ScannedDetailsCard({
     Key? key,
@@ -122,56 +83,86 @@ class _ScannedDetailsCard extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.grey.shade700),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              if (index == 0)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(Icons.list_alt),
-                    ),
-                    Expanded(
-                      child: Text(
-                        "Invoice Details",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              if (index == 0)
-                const Divider(
-                  thickness: 3,
-                  color: Colors.black45,
-                ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      info[index].key,
-                      style: const TextStyle(fontSize: 18),
-                    ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.list_alt),
+              ),
+              Expanded(
+                child: Text(
+                  "Invoice Details",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text(
-                    info[index].value,
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ],
+                ),
               ),
             ],
-          );
-        },
-        separatorBuilder: (context, index) => const Divider(thickness: 2),
-        itemCount: info.length,
+          ),
+          const Divider(thickness: 3, color: Colors.black45),
+          ScannedDetailsCardWidget(info: info),
+        ],
+      ),
+    );
+  }
+}
+
+class _WrongScannedInfo extends StatelessWidget {
+  const _WrongScannedInfo({
+    Key? key,
+    required this.scannedData,
+    required this.errorMessage,
+  }) : super(key: key);
+
+  final String scannedData, errorMessage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.grey.shade700,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              errorMessage,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.red,
+              ),
+            ),
+          ),
+          const Divider(),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8.0),
+                alignment: Alignment.centerLeft,
+                child: const Text(
+                  "QR Code Data:",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  scannedData,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

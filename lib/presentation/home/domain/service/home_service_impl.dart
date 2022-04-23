@@ -2,15 +2,14 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
+import 'package:e_invoice_qrcode_reader/core/common/models/invoice_model.dart';
 
 import '../../../../core/failures/failures.dart';
-import '../../../../core/fixtures/tlv_model_keys.dart';
-import '../models/tlv.dart';
 import 'home_service.dart';
 
 class HomeServiceImpl implements HomeService {
   @override
-  Either<Failure, List<TlvModel>> validateQrCode(String scannedString) {
+  Either<Failure, InvoiceModel> validateQrCode(String scannedString) {
     try {
       return Right(_validateQrCodeStringEncryption(scannedString));
     } catch (e) {
@@ -22,13 +21,13 @@ class HomeServiceImpl implements HomeService {
     }
   }
 
-  List<TlvModel> _validateQrCodeStringEncryption(String scannedString) {
+  InvoiceModel _validateQrCodeStringEncryption(String scannedString) {
     const Base64Decoder b64Decoder = Base64Decoder();
     scannedString = scannedString.trim().replaceAll(RegExp(r"\s+"), "");
     print(scannedString);
     final Uint8List qrCodeAsBytes = b64Decoder.convert(scannedString);
     int start = 0, end = 0, index = 0;
-    List<TlvModel> tlvList = [];
+    InvoiceModel scannedInvoice = InvoiceModel.empty();
 
     for (int counter = 0; counter < 5; counter++) {
       index = start + 1;
@@ -39,15 +38,23 @@ class HomeServiceImpl implements HomeService {
       if (counter > 2) {
         value = value + " SAR";
       }
-      tlvList.add(
-        TlvModel(
-          tag: qrCodeAsBytes[start - 2],
-          value: value,
-          key: TlvModelKeys.values[counter],
-        ),
-      );
+      if (counter == 0) {
+        scannedInvoice = scannedInvoice.copyWith(sellerName: value);
+      }
+      if (counter == 1) {
+        scannedInvoice = scannedInvoice.copyWith(sellerTaxNumber: value);
+      }
+      if (counter == 2) {
+        scannedInvoice = scannedInvoice.copyWith(invoiceDate: value);
+      }
+      if (counter == 3) {
+        scannedInvoice = scannedInvoice.copyWith(invoiceTotal: value);
+      }
+      if (counter == 4) {
+        scannedInvoice = scannedInvoice.copyWith(taxTotal: value);
+      }
       start = end;
     }
-    return tlvList;
+    return scannedInvoice;
   }
 }

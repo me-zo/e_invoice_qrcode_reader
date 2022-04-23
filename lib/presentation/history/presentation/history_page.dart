@@ -1,7 +1,9 @@
+import 'package:e_invoice_qrcode_reader/presentation/history/presentation/manager/history_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'manager/functions_history.dart';
-import 'widgets/history_screen.dart';
+import 'screens/invoice_list.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({
@@ -16,36 +18,15 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> with FunctionsHistory {
   @override
   void initState() {
+    BlocProvider.of<HistoryCubit>(context).displayInvoiceList();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(onPressed: (){}, icon: const Icon(Icons.contact_support)),
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.history)),
-              Tab(icon: Icon(Icons.qr_code_scanner)),
-              Tab(icon: Icon(Icons.info_outline)),
-            ],
-          ),
-          actions: [
-            IconButton(onPressed: (){}, icon: const Icon(Icons.settings))
-          ],
-        ),
-        body: const TabBarView(
-          children: [
-            Center(child: Text("History"),),
-            HistoryScreen(),
-            Center(child: Text("About Us"),),
-          ],
-        ),
-      ),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: InvoiceList(),
     );
   }
 }

@@ -20,5 +20,5 @@ class Loading extends HomeState {
 
 class DisplayScannedInfo extends HomeState {
   DisplayScannedInfo({required this.info});
-  final List<TlvModel> info;
+  final InvoiceModel info;
 }

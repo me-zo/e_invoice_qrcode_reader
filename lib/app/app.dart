@@ -1,3 +1,4 @@
+import 'package:e_invoice_qrcode_reader/presentation/history/presentation/manager/history_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -41,6 +42,9 @@ class _MyAppState extends State<MyApp> {
             providers: [
               BlocProvider<HomeCubit>(
                 create: (context) => sl<HomeCubit>(),
+              ),
+              BlocProvider<HistoryCubit>(
+                create: (context) => sl<HistoryCubit>(),
               ),
             ],
             child: MaterialApp(

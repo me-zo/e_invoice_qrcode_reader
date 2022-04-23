@@ -20,5 +20,5 @@ class Loading extends HistoryState {
 
 class DisplayScannedInfo extends HistoryState {
   DisplayScannedInfo({required this.info});
-  final List<TlvModel> info;
+  final InvoiceListModel info;
 }

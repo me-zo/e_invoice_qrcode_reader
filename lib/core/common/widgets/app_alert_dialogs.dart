@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../localization/app_localization.dart';
+import '../../localization/app_localization.dart';
 
 /// returns a template for an Alert dialog
 ///
