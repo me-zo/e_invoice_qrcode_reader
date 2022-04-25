@@ -13,43 +13,47 @@ class InvoiceList extends StatelessWidget with FunctionsHistory {
   Widget build(BuildContext context) {
     return BlocBuilder<HistoryCubit, HistoryState>(
       builder: (context, state) {
-        if (state is DisplayScannedInfo) {
-          return ListView.separated(
-            itemCount: state.info.invoices.length,
-            separatorBuilder: (context, index) {
-              if (state.info.invoices[index].scannedDate.day.isEven) {
-                return _DateDivider(
-                  date: state.info.invoices[index].scannedDate,
+        if (state is DisplayInvoiceList) {
+          return state.info.invoices.isEmpty
+              ? const Center(
+                  child: Text("Scan Some QRs!", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                )
+              : ListView.separated(
+                  itemCount: state.info.invoices.length,
+                  separatorBuilder: (context, index) {
+                    if (state.info.invoices[index].scannedDate.day.isEven) {
+                      return _DateDivider(
+                        date: state.info.invoices[index].scannedDate,
+                      );
+                    } else {
+                      return const Divider(thickness: 2);
+                    }
+                  },
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              offset: Offset(1, 3),
+                              blurRadius: 5,
+                              color: Colors.white,
+                            ),
+                            BoxShadow(
+                              offset: Offset(-2, -1),
+                              blurRadius: 3,
+                              color: Colors.black87,
+                            ),
+                          ],
+                          color: Colors.grey.shade700),
+                      child: ScannedDetailsCardWidget(
+                        info: state.info.invoices[index],
+                      ),
+                    );
+                  },
                 );
-              } else {
-                return const Divider(thickness: 2);
-              }
-            },
-            itemBuilder: (context, index) {
-              return Container(
-                padding: const EdgeInsets.all(10),
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(1, 3),
-                        blurRadius: 5,
-                        color: Colors.white,
-                      ),
-                      BoxShadow(
-                        offset: Offset(-2, -1),
-                        blurRadius: 3,
-                        color: Colors.black87,
-                      ),
-                    ],
-                    color: Colors.grey.shade700),
-                child: ScannedDetailsCardWidget(
-                  info: state.info.invoices[index],
-                ),
-              );
-            },
-          );
         } else {
           return const Center(
             child: Text("Error Happened"),

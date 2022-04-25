@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:e_invoice_qrcode_reader/core/dependency_registrar/feature_dependencies/history_dep.dart';
-import 'package:e_invoice_qrcode_reader/data/repositories/object_box.dart';
+import 'package:e_invoice_qrcode_reader/data/repositories/invoice/invoice_repository.dart';
+import 'package:e_invoice_qrcode_reader/data/repositories/invoice/invoice_repository_impl.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../network/connection_checker.dart';
@@ -27,8 +28,8 @@ Future<void> initDependencies(GetIt sl) async {
       connectionChecker: sl(),
     ),
   );
-var objectBoxImpl = await ObjectBox.create();
-  sl.registerLazySingleton<ObjectBox>(() => objectBoxImpl);
+var objectBoxImpl = await InvoiceRepositoryImpl.create();
+  sl.registerSingleton<InvoiceRepository>(objectBoxImpl);
 
   //#endregion
 

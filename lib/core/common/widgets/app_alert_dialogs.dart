@@ -1,3 +1,4 @@
+import 'package:e_invoice_qrcode_reader/app/app_theme/button_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../localization/app_localization.dart';
@@ -9,7 +10,6 @@ import '../../localization/app_localization.dart';
 /// takes a list of widgets [actions] which are displayed as actions on the alert dialog
 ///
 mixin AppAlertDialog {
-
   static Widget alertDialog({
     required List<Widget> actions,
     required List<Widget> content,
@@ -18,10 +18,12 @@ mixin AppAlertDialog {
       child: SingleChildScrollView(
         child: AlertDialog(
           titlePadding: const EdgeInsets.all(0),
-          contentPadding:
-              content.isNotEmpty ? const EdgeInsets.all(10) : const EdgeInsets.all(0),
-          actionsPadding:
-              actions.isNotEmpty ? const EdgeInsets.all(10) : const EdgeInsets.all(0),
+          contentPadding: content.isNotEmpty
+              ? const EdgeInsets.all(10)
+              : const EdgeInsets.all(0),
+          actionsPadding: actions.isNotEmpty
+              ? const EdgeInsets.all(10)
+              : const EdgeInsets.all(0),
           actionsAlignment: MainAxisAlignment.center,
           actions: actions,
           content: Column(
@@ -48,22 +50,31 @@ mixin AppAlertDialog {
       context: context,
       builder: (BuildContext diaContext) {
         return AlertDialog(
-          titlePadding: const EdgeInsets.only(top: 15, bottom: 5, left: 15, right: 15),
-          contentPadding: const EdgeInsets.only(top: 5, bottom: 15, left: 15, right: 15),
+          titlePadding:
+              const EdgeInsets.only(top: 15, bottom: 5, left: 15, right: 15),
+          contentPadding:
+              const EdgeInsets.only(top: 5, bottom: 15, left: 15, right: 15),
           title: Text(AppLocalizations.of(context)!.translate("are_you_sure"),
               textAlign: TextAlign.start),
           content: Text(
               message.isNotEmpty
                   ? message
-                  : AppLocalizations.of(context)!.translate("are_you_sure_body"),
+                  : AppLocalizations.of(context)!
+                      .translate("are_you_sure_body"),
               textAlign: TextAlign.start),
           actions: [
             OutlinedButton(
-              child: Text(AppLocalizations.of(context)!.translate("cancel"),),
+              style: ButtonStyles.red(outlined: true),
+              child: Text(
+                AppLocalizations.of(context)!.translate("cancel").toUpperCase(),
+              ),
               onPressed: onCancel,
             ),
             ElevatedButton(
-              child: Text(AppLocalizations.of(context)!.translate("next"),),
+              style: ButtonStyles.primary(),
+              child: Text(
+                AppLocalizations.of(context)!.translate("next").toUpperCase(),
+              ),
               onPressed: onNext,
             ),
           ],

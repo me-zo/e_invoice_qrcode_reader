@@ -1,3 +1,4 @@
+import 'package:e_invoice_qrcode_reader/core/common/widgets/app_snack_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/app_theme/button_styles.dart';
@@ -30,7 +31,9 @@ class _HomeState extends State<Home> with FunctionsHome {
           padding: const EdgeInsets.all(20),
           child: ElevatedButton(
             style: ButtonStyles.primary(),
-            onPressed: () {},
+            onPressed: () {
+              AppSnackBar.errorSnackBar(context,message: "Sorry! This Feature Is not supported yet.");
+            },
             child: Text(
               "Scan From Gallery".toUpperCase(),
             ),
@@ -54,6 +57,7 @@ class _OrDividerWidget extends StatelessWidget {
         SizedBox(
           child: Divider(
             color: Colors.white,
+            thickness: 3,
           ),
           width: 60,
         ),
@@ -69,6 +73,7 @@ class _OrDividerWidget extends StatelessWidget {
         SizedBox(
           child: Divider(
             color: Colors.white,
+            thickness: 3,
           ),
           width: 60,
         ),

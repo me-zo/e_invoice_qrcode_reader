@@ -18,7 +18,7 @@ class ShowError extends HistoryState {
 class Loading extends HistoryState {
 }
 
-class DisplayScannedInfo extends HistoryState {
-  DisplayScannedInfo({required this.info});
+class DisplayInvoiceList extends HistoryState {
+  DisplayInvoiceList({required this.info});
   final InvoiceListModel info;
 }

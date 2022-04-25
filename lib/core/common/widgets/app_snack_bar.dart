@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../localization/app_localization.dart';
 
 mixin AppSnackBar {
-  void errorSnackBar(BuildContext context, {String message = ""}) {
+  static void errorSnackBar(BuildContext context, {String message = ""}) {
     ScaffoldMessenger.of(context).showSnackBar(_snackBarWidget(
       context,
       message: message,
@@ -11,7 +11,7 @@ mixin AppSnackBar {
     ));
   }
 
-  void successSnackBar(BuildContext context, {String? resourceKey}) {
+  static void successSnackBar(BuildContext context, {String? resourceKey}) {
     ScaffoldMessenger.of(context).showSnackBar(_snackBarWidget(
       context,
       message: resourceKey ?? "success_message",
@@ -19,7 +19,7 @@ mixin AppSnackBar {
     ));
   }
 
-  void notificationSnackBar(BuildContext context, {String message = ""}) {
+  static  void notificationSnackBar(BuildContext context, {String message = ""}) {
     final theme = Theme.of(context);
     ScaffoldMessenger.of(context).showSnackBar(_snackBarWidget(
       context,
@@ -28,7 +28,7 @@ mixin AppSnackBar {
     ));
   }
 
-  SnackBar _snackBarWidget(
+  static SnackBar _snackBarWidget(
     BuildContext context, {
     required String message,
     required Color backgroundColor,

@@ -16,7 +16,15 @@ class HistoryCubit extends Cubit<HistoryState> {
     var result = historyService.invoiceList();
     result.fold(
       (l) => emit(ShowError(message: l.message)),
-      (r) => emit(DisplayScannedInfo(info: r)),
+      (r) => emit(DisplayInvoiceList(info: r)),
+    );
+  }
+  void clearAll() {
+    emit(Loading());
+    var result = historyService.clearList();
+    result.fold(
+      (l) => emit(ShowError(message: l.message)),
+      (r) => emit(DisplayInvoiceList(info: InvoiceListModel.empty())),
     );
   }
 }

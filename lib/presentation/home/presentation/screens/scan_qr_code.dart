@@ -1,6 +1,9 @@
-import 'scanned_qr_preview.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import 'scanned_qr_preview.dart';
 
 class ScanQrCode extends StatefulWidget {
   const ScanQrCode({Key? key}) : super(key: key);
@@ -15,8 +18,31 @@ class _ScanQrCodeState extends State<ScanQrCode> {
   Barcode? result;
   QRViewController? controller;
 
+  // In order to get hot reload to work we need to pause the camera if the platform
+  // is android, or resume the camera if the platform is iOS.
+  @override
+  void reassemble() {
+    super.reassemble();
+    if (Platform.isAndroid) {
+      controller!.pauseCamera();
+    } else if (Platform.isIOS) {
+      controller!.resumeCamera();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (result != null) {
+      Future.delayed(
+        Duration.zero,
+        () => Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) =>
+                ScannedQrPreview(scannedData: result!.code ?? ""),
+          ),
+        ),
+      );
+    }
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -28,23 +54,6 @@ class _ScanQrCodeState extends State<ScanQrCode> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  if (result != null)
-                    Builder(
-                      builder: (BuildContext context) {
-                        controller!.stopCamera();
-                        Future.delayed(Duration.zero,
-                          () => Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => ScannedQrPreview(
-                                  scannedData: result!.code ?? ""),
-                            ),
-                          ),
-                        );
-                        return const Text('Scan a code');
-                      },
-                    )
-                  else
-                    const Text('Scan a code'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,15 +61,16 @@ class _ScanQrCodeState extends State<ScanQrCode> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: IconButton(
-                          iconSize: 40,
+                            iconSize: 40,
                             onPressed: () async {
                               await controller?.toggleFlash();
                               setState(() {});
                             },
                             icon: FutureBuilder(
                               future: controller?.getFlashStatus(),
-                              builder: (context, AsyncSnapshot<bool?> snapshot) {
-                                if(snapshot.data ?? false) {
+                              builder:
+                                  (context, AsyncSnapshot<bool?> snapshot) {
+                                if (snapshot.data ?? false) {
                                   return const Icon(Icons.flash_off);
                                 } else {
                                   return const Icon(Icons.flash_on);
@@ -135,9 +145,16 @@ class _ScanQrCodeState extends State<ScanQrCode> {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-      });
+      controller.pauseCamera();
+      controller.stopCamera();
+
+      result = scanData;
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) =>
+              ScannedQrPreview(scannedData: result!.code ?? ""),
+        ),
+      );
     });
   }
 

@@ -8,6 +8,7 @@ Future<void> homeDependencies(GetIt sl) async {
 
   sl.registerFactory<HomeService>(
         () => HomeServiceImpl(
+          invoiceRepository: sl(),
     ),
   );
 

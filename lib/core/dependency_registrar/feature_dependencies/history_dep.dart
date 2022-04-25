@@ -5,7 +5,9 @@ import 'package:get_it/get_it.dart';
 
 Future<void> historyDependencies(GetIt sl) async {
   sl.registerFactory<HistoryService>(
-    () => HistoryServiceImpl(),
+    () => HistoryServiceImpl(
+      invoiceRepository: sl(),
+    ),
   );
 
   sl.registerFactory(

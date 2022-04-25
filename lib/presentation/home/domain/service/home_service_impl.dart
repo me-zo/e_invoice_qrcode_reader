@@ -3,23 +3,39 @@ import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:e_invoice_qrcode_reader/core/common/models/invoice_model.dart';
+import 'package:e_invoice_qrcode_reader/core/exports.dart';
+import 'package:e_invoice_qrcode_reader/data/entities/invoice_entity.dart';
+import 'package:e_invoice_qrcode_reader/data/repositories/invoice/invoice_repository.dart';
 
-import '../../../../core/failures/failures.dart';
 import 'home_service.dart';
 
 class HomeServiceImpl implements HomeService {
+  final InvoiceRepository invoiceRepository;
+
+  HomeServiceImpl({required this.invoiceRepository});
+
   @override
-  Either<Failure, InvoiceModel> validateQrCode(String scannedString) {
-    try {
-      return Right(_validateQrCodeStringEncryption(scannedString));
-    } catch (e) {
-      return Left(
-        InvalidScanFailure(
-          message: "The Scanned QR Code is not compliant with ZATCA standards",
-        ),
+  Either<Failure, InvoiceModel> validateQrCode(String scannedString) =>
+      FailureHandler.handleFunction<InvoiceModel>(
+        () {
+          var scannedInvoice = _validateQrCodeStringEncryption(scannedString);
+          invoiceRepository.insert(
+            invoiceEntity: InvoiceEntity(
+              sellerName: scannedInvoice.sellerName,
+              sellerTaxNumber: scannedInvoice.sellerTaxNumber,
+              invoiceDate: scannedInvoice.invoiceDate,
+              invoiceTotal: scannedInvoice.invoiceTotal,
+              taxTotal: scannedInvoice.taxTotal,
+              scannedDate: scannedInvoice.scannedDate,
+            ),
+          );
+          return scannedInvoice;
+        },
+        "The Scanned QR Code is not compliant with ZATCA standards",
+      ).fold(
+        (l) => Left(l),
+        (r) => Right(r),
       );
-    }
-  }
 
   InvoiceModel _validateQrCodeStringEncryption(String scannedString) {
     const Base64Decoder b64Decoder = Base64Decoder();
