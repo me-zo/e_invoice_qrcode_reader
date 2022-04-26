@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_invoice_qrcode_reader/core/common/models/invoice_model.dart';
-import 'package:e_invoice_qrcode_reader/core/exports.dart';
-import 'package:e_invoice_qrcode_reader/data/entities/invoice_entity.dart';
-import 'package:e_invoice_qrcode_reader/data/repositories/invoice/invoice_repository.dart';
-import 'package:e_invoice_qrcode_reader/presentation/history/domain/models/invoice_list_model.dart';
+import '../../../../core/common/models/invoice_model.dart';
+import '../../../../core/exports.dart';
+import '../../../../data/entities/invoice_entity.dart';
+import '../../../../data/repositories/invoice/invoice_repository.dart';
+import '../models/invoice_list_model.dart';
 
 import 'history_service.dart';
 

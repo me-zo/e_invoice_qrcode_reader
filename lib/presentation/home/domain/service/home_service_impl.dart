@@ -40,7 +40,6 @@ class HomeServiceImpl implements HomeService {
   InvoiceModel _validateQrCodeStringEncryption(String scannedString) {
     const Base64Decoder b64Decoder = Base64Decoder();
     scannedString = scannedString.trim().replaceAll(RegExp(r"\s+"), "");
-    print(scannedString);
     final Uint8List qrCodeAsBytes = b64Decoder.convert(scannedString);
     int start = 0, end = 0, index = 0;
     InvoiceModel scannedInvoice = InvoiceModel.empty();

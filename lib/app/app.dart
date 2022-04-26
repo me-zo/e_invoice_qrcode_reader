@@ -1,3 +1,4 @@
+import 'package:e_invoice_qrcode_reader/app/app_theme/theme_notifier.dart';
 import 'package:e_invoice_qrcode_reader/presentation/history/presentation/manager/history_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,10 +8,10 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../core/localization/app_localization.dart';
 import '../core/localization/language_notifier.dart';
+import '../main.dart';
 import '../presentation/home/presentation/manager/home_cubit.dart';
 import '../presentation/home/presentation/screens/splash.dart';
 import '../presentation/route_generator.dart';
-import '../main.dart';
 import 'app_theme/app_theme.dart';
 
 /// The Widget that configures your application.
@@ -31,8 +32,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => widget.currentLocale,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => widget.currentLocale,
+        ),ChangeNotifierProvider<ThemeNotifier>(
+          create: (_) => ThemeNotifier(AppTheme.darkThemeData),
+        ),
+      ],
       child: Consumer<AppLanguage>(
         builder: (context, model, child) {
           // return AnimatedBuilder(
@@ -77,8 +84,7 @@ class _MyAppState extends State<MyApp> {
                 }
                 return supportedLocales.first;
               },
-              theme: AppTheme.darkTheme,
-              darkTheme: AppTheme.darkTheme,
+              theme:Provider.of<ThemeNotifier>(context).getTheme(),
               onGenerateRoute: RouteGenerator(),
               home: const Splash(),
             ),

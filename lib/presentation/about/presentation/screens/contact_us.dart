@@ -1,17 +1,17 @@
 import '../../../../core/common/widgets/scanned_details_card.dart';
 import '../../../../core/helpers/common_helper.dart';
-import '../manager/history_cubit.dart';
+import '../manager/about_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../manager/functions_history.dart';
+import '../manager/functions_about.dart';
 
-class InvoiceList extends StatelessWidget with FunctionsHistory {
-  const InvoiceList({Key? key}) : super(key: key);
+class ContactUs extends StatelessWidget with FunctionsAbout {
+  const ContactUs({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HistoryCubit, HistoryState>(
+    return BlocBuilder<AboutCubit, AboutState>(
       builder: (context, state) {
         if (state is DisplayInvoiceList) {
           return state.info.invoices.isEmpty

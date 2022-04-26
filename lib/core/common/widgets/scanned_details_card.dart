@@ -73,7 +73,7 @@ class _InvoiceDataRow extends StatelessWidget {
           Text(
             date!,
             textAlign: TextAlign.end,
-            style: TextStyle(fontWeight: FontWeight.w400),
+            style: const TextStyle(fontWeight: FontWeight.w400),
           ),
       ],
     );

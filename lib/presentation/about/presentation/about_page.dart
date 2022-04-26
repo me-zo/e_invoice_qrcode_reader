@@ -1,25 +1,25 @@
 import '../../../core/common/widgets/app_alert_dialogs.dart';
-import 'manager/history_cubit.dart';
+import 'manager/about_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'manager/functions_history.dart';
-import 'screens/invoice_list.dart';
+import 'manager/functions_about.dart';
+import 'screens/contact_us.dart';
 
-class HistoryPage extends StatefulWidget {
-  const HistoryPage({
+class AboutPage extends StatefulWidget {
+  const AboutPage({
     Key? key,
   }) : super(key: key);
-  static const routeName = "/HistoryPage";
+  static const routeName = "/AboutPage";
 
   @override
-  State<HistoryPage> createState() => _HistoryPageState();
+  State<AboutPage> createState() => _AboutPageState();
 }
 
-class _HistoryPageState extends State<HistoryPage> with FunctionsHistory {
+class _AboutPageState extends State<AboutPage> with FunctionsAbout {
   @override
   void initState() {
-    BlocProvider.of<HistoryCubit>(context).displayInvoiceList();
+    BlocProvider.of<AboutCubit>(context).prepareSettings();
     super.initState();
   }
 
@@ -28,7 +28,7 @@ class _HistoryPageState extends State<HistoryPage> with FunctionsHistory {
     return Scaffold(
       body: const Padding(
         padding: EdgeInsets.all(8.0),
-        child: InvoiceList(),
+        child: ContactUs(),
       ),
       floatingActionButton: Container(
         decoration: BoxDecoration(
@@ -42,7 +42,7 @@ class _HistoryPageState extends State<HistoryPage> with FunctionsHistory {
               message: "Clear History",
               onCancel: () => Navigator.of(context).pop(),
               onNext: () {
-                BlocProvider.of<HistoryCubit>(context).clearAll();
+                BlocProvider.of<AboutCubit>(context).changeTheme();
                 Navigator.of(context).pop();
               },
             );

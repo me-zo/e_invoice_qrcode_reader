@@ -1,4 +1,4 @@
-import 'package:e_invoice_qrcode_reader/core/common/models/invoice_model.dart';
+import '../../../../core/common/models/invoice_model.dart';
 
 class InvoiceListModel {
   List<InvoiceModel> invoices;

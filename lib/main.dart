@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'app/app.dart';
 import 'core/dependency_registrar/dependencies.dart';
@@ -11,11 +12,9 @@ final sl = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await initDependencies(sl);
-
   AppLanguage appLanguage = AppLanguage();
-
+  GoogleFonts.config.allowRuntimeFetching = false;
   //TODO: REMOVE IN PRODUCTION (for overriding http certificates)
   HttpOverrides.global = MyHttpOverrides();
   runApp(

@@ -27,7 +27,14 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(onPressed: (){}, icon: const Icon(Icons.contact_support)),
+          elevation: 10,
+          backgroundColor: Theme.of(context).colorScheme.onBackground,
+          leading: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.contact_support,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              )),
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.history)),
@@ -36,14 +43,21 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
             ],
           ),
           actions: [
-            IconButton(onPressed: (){}, icon: const Icon(Icons.settings))
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.settings,
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ))
           ],
         ),
         body: const TabBarView(
           children: [
             HistoryPage(),
             Home(),
-            Center(child: Text("About Us"),),
+            Center(
+              child: Text("About Us"),
+            ),
           ],
         ),
       ),
