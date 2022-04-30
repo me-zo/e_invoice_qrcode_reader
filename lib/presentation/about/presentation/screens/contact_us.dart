@@ -1,9 +1,9 @@
-import '../../../../core/common/widgets/scanned_details_card.dart';
-import '../../../../core/helpers/common_helper.dart';
-import '../manager/about_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/common/widgets/scanned_details_card.dart';
+import '../../../../core/helpers/common_helper.dart';
+import '../manager/about_cubit.dart';
 import '../manager/functions_about.dart';
 
 class ContactUs extends StatelessWidget with FunctionsAbout {
@@ -16,7 +16,9 @@ class ContactUs extends StatelessWidget with FunctionsAbout {
         if (state is DisplayInvoiceList) {
           return state.info.invoices.isEmpty
               ? const Center(
-                  child: Text("Scan Some QRs!", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                  child: Text("Scan Some QRs!",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 )
               : ListView.separated(
                   itemCount: state.info.invoices.length,

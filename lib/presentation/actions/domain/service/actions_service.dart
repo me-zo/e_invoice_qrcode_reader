@@ -6,6 +6,7 @@ import '../../../../core/failures/failure.dart';
 
 abstract class ActionsService {
   Either<Failure, SettingsModel> loadSettings();
+
   Either<Failure, FaqsListModel> loadFaqs();
 
   Either<Failure, void> changeLanguage({required String language});

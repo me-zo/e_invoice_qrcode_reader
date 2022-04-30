@@ -20,7 +20,6 @@ class MyApp extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-
   @override
   State<MyApp> createState() => _MyAppState();
 }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../models/invoice_model.dart';
 
-
 class ScannedDetailsCardWidget extends StatelessWidget {
   final InvoiceModel info;
 
@@ -18,16 +17,21 @@ class ScannedDetailsCardWidget extends StatelessWidget {
     var locale = Resources.of(context);
     return Column(
       children: [
-        _InvoiceDataRow(title: locale.getResource("core.common.sellerName"), value: info.sellerName),
+        _InvoiceDataRow(
+            title: locale.getResource("core.common.sellerName"),
+            value: info.sellerName),
         const Divider(),
         _InvoiceDataRow(
-            title: locale.getResource("core.common.sellerTaxNumber"), value: info.sellerTaxNumber),
+            title: locale.getResource("core.common.sellerTaxNumber"),
+            value: info.sellerTaxNumber),
         const Divider(),
         _InvoiceDataRow(
-            title: locale.getResource("core.common.invoiceDate"), value: info.invoiceDate),
+            title: locale.getResource("core.common.invoiceDate"),
+            value: info.invoiceDate),
         const Divider(),
         _InvoiceDataRow(
-            title: locale.getResource("core.common.invoiceTotal"), value: info.invoiceTotal),
+            title: locale.getResource("core.common.invoiceTotal"),
+            value: info.invoiceTotal),
         const Divider(),
         _InvoiceDataRow(
           title: locale.getResource("core.common.taxTotal"),

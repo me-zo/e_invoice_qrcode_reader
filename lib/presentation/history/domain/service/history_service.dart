@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../models/invoice_list_model.dart';
 
 import '../../../../core/failures/failure.dart';
+import '../models/invoice_list_model.dart';
 
 abstract class HistoryService {
   Either<Failure, InvoiceListModel> invoiceList();

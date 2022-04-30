@@ -2,6 +2,7 @@ class FaqsListModel {
   final List<FaqsQuestionModel> questions;
 
   FaqsListModel({required this.questions});
+
   factory FaqsListModel.empty() => FaqsListModel(questions: []);
 }
 

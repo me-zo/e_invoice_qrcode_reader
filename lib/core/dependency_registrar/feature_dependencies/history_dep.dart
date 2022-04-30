@@ -10,7 +10,8 @@ void historyDependencies(GetIt locator) {
     ),
   );
 
-  locator.registerSingleton<HistoryCubit>(HistoryCubit(
+  locator.registerSingleton<HistoryCubit>(
+    HistoryCubit(
       historyService: locator(),
     ),
   );

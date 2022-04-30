@@ -1,8 +1,8 @@
-import '../../../core/common/widgets/app_alert_dialogs.dart';
-import 'manager/about_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/common/widgets/app_alert_dialogs.dart';
+import 'manager/about_cubit.dart';
 import 'manager/functions_about.dart';
 import 'screens/contact_us.dart';
 

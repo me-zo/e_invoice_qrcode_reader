@@ -26,7 +26,8 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
   InvoiceRepositoryImpl._create(this.store) {
     invoiceEntityBox = Box<InvoiceEntity>(store);
 
-    final qBuilder = invoiceEntityBox.query()..order(InvoiceEntity_.scannedDate);
+    final qBuilder = invoiceEntityBox.query()
+      ..order(InvoiceEntity_.scannedDate);
     queryStream = qBuilder.watch(triggerImmediately: true);
 
     // Add some demo data if the box is empty.
@@ -52,12 +53,12 @@ class InvoiceRepositoryImpl implements InvoiceRepository {
 
   @override
   void insert({required InvoiceEntity invoiceEntity}) {
-    invoiceEntityBox.put(invoiceEntity,mode: PutMode.insert);
+    invoiceEntityBox.put(invoiceEntity, mode: PutMode.insert);
   }
 
   @override
   void update({required InvoiceEntity invoiceEntity}) {
-    invoiceEntityBox.put(invoiceEntity,mode: PutMode.update);
+    invoiceEntityBox.put(invoiceEntity, mode: PutMode.update);
   }
 
   @override

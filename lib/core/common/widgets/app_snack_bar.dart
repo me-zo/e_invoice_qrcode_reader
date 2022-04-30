@@ -1,10 +1,9 @@
 import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
 import 'package:flutter/material.dart';
 
-
 mixin AppSnackBar {
-
-  static void notificationSnackBar(BuildContext context, {String message = ""}) {
+  static void notificationSnackBar(BuildContext context,
+      {String message = ""}) {
     ScaffoldMessenger.of(context).showSnackBar(_snackBarWidget(
       context,
       message: message,

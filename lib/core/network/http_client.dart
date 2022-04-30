@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'connection_checker.dart';
 
 abstract class HttpClient {
   Future<http.Response> postData({
@@ -19,7 +19,7 @@ abstract class HttpClient {
   Future<http.Response> getData({
     required String url,
   });
-  // String getBaseUrl();
+// String getBaseUrl();
 }
 
 class HttpClientImpl extends HttpClient {

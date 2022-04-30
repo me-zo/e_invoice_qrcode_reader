@@ -2,7 +2,6 @@ import 'package:e_invoice_qrcode_reader/app/app_theme/styles/button_styles.dart'
 import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
 import 'package:flutter/material.dart';
 
-
 /// returns a template for an Alert dialog
 ///
 /// takes a list of widgets [content] which are displayed in a column at the center of the dialog
@@ -54,7 +53,8 @@ mixin AppAlertDialog {
               const EdgeInsets.only(top: 15, bottom: 5, left: 15, right: 15),
           contentPadding:
               const EdgeInsets.only(top: 5, bottom: 15, left: 15, right: 15),
-          title: Text(Resources.of(context).getResource("core.common.areYouSure"),
+          title: Text(
+              Resources.of(context).getResource("core.common.areYouSure"),
               textAlign: TextAlign.start),
           content: Text(
               message.isNotEmpty
@@ -66,14 +66,18 @@ mixin AppAlertDialog {
             OutlinedButton(
               style: ButtonStyles.red(outlined: true),
               child: Text(
-                Resources.of(context).getResource("core.common.cancel").toUpperCase(),
+                Resources.of(context)
+                    .getResource("core.common.cancel")
+                    .toUpperCase(),
               ),
               onPressed: onCancel,
             ),
             ElevatedButton(
               style: ButtonStyles.primary(Theme.of(context).colorScheme),
               child: Text(
-                Resources.of(context).getResource("core.common.confirm").toUpperCase(),
+                Resources.of(context)
+                    .getResource("core.common.confirm")
+                    .toUpperCase(),
               ),
               onPressed: onNext,
             ),

@@ -1,4 +1,3 @@
-
 class ThemeCodes {
   static const String preferencesKey = "currentAppTheme";
   static const String light = "light";

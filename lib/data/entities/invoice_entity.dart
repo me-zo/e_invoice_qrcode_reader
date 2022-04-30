@@ -1,4 +1,3 @@
-
 import 'package:e_invoice_qrcode_reader/core/helpers/common_helper.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -22,7 +21,6 @@ class InvoiceEntity {
     required this.scannedDate,
   });
 
-
   InvoiceEntity copyWith({
     int? id,
     String? sellerName,
@@ -42,14 +40,14 @@ class InvoiceEntity {
       scannedDate: scannedDate ?? this.scannedDate,
     );
   }
-  factory InvoiceEntity.empty() => InvoiceEntity(
-      id: 0,
-      sellerName: "",
-      sellerTaxNumber: "",
-      invoiceDate: "",
-      invoiceTotal: "",
-      taxTotal: "",
-      scannedDate: CommonHelper.emptyDate,
-    );
 
+  factory InvoiceEntity.empty() => InvoiceEntity(
+        id: 0,
+        sellerName: "",
+        sellerTaxNumber: "",
+        invoiceDate: "",
+        invoiceTotal: "",
+        taxTotal: "",
+        scannedDate: CommonHelper.emptyDate,
+      );
 }

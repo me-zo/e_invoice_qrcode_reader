@@ -73,8 +73,8 @@ mixin CommonHelper {
     final DateFormat formatter = withTime
         ? DateFormat('yyyy - MM - dd hh:mm a')
         : timeOnly
-        ? DateFormat('hh:mm a')
-        : DateFormat('yyyy - MM - dd');
+            ? DateFormat('hh:mm a')
+            : DateFormat('yyyy - MM - dd');
     return formatter.format(date);
   }
 

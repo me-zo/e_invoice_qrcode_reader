@@ -1,4 +1,3 @@
-
 class LanguageCodes {
   static const String preferencesKey = "languageCode";
   static const String arabic = "ar";

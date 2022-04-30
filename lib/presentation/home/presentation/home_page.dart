@@ -70,11 +70,11 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
               listener: (context, state) {
                 if (state is ScanQrCode) {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ScannedQrPreview(scannedData: state.scannedString),
-                      ),
-                    );
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ScannedQrPreview(scannedData: state.scannedString),
+                    ),
+                  );
                 }
               },
               child: const Home(),

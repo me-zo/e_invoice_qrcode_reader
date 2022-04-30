@@ -12,18 +12,18 @@ class AboutServiceImpl implements AboutService {
   @override
   Either<Failure, void> changeLanguage() => FailureHandler.handleEither<void>(
         () => Right(null),
-    "The Scanned QR Code is not compliant with ZATCA standards",
-  );
+        "The Scanned QR Code is not compliant with ZATCA standards",
+      );
 
   @override
   Either<Failure, void> changeTheme() => FailureHandler.handleEither<void>(
         () => Right(null),
-    "The Scanned QR Code is not compliant with ZATCA standards",
-  );
+        "The Scanned QR Code is not compliant with ZATCA standards",
+      );
 
   @override
   Either<Failure, void> loadSettings() => FailureHandler.handleEither<void>(
         () => Right(null),
-    "The Scanned QR Code is not compliant with ZATCA standards",
-  );
+        "The Scanned QR Code is not compliant with ZATCA standards",
+      );
 }

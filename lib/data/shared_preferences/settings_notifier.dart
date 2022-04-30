@@ -47,7 +47,8 @@ class SettingsNotifier extends ChangeNotifier {
     return _selectTheme(code);
   }
 
-  String get getThemeName => _preferences.getString(ThemeCodes.preferencesKey) ?? ThemeCodes.dark;
+  String get getThemeName =>
+      _preferences.getString(ThemeCodes.preferencesKey) ?? ThemeCodes.dark;
 
   static ThemeData _selectTheme(String themeCode) {
     switch (themeCode) {

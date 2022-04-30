@@ -11,7 +11,8 @@ void homeDependencies(GetIt locator) {
     ),
   );
 
-  locator.registerSingleton<HomeCubit>(HomeCubit(
+  locator.registerSingleton<HomeCubit>(
+    HomeCubit(
       homeService: locator(),
     ),
   );

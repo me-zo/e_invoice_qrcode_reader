@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/common/models/invoice_model.dart';
 import '../../../../core/exports.dart';
 import '../../../../data/repositories/invoice/invoice_repository.dart';
 import '../models/invoice_list_model.dart';
-
 import 'history_service.dart';
 
 class HistoryServiceImpl implements HistoryService {
@@ -19,7 +19,7 @@ class HistoryServiceImpl implements HistoryService {
           InvoiceListModel invoices = InvoiceListModel(
             invoices: List.generate(
               r.length,
-                  (index) => InvoiceModel(
+              (index) => InvoiceModel(
                 sellerName: r[index].sellerName,
                 sellerTaxNumber: r[index].sellerTaxNumber,
                 invoiceDate: r[index].invoiceDate,

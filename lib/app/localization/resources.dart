@@ -22,8 +22,8 @@ class Resources {
   Map<String, String>? _localizedValues;
 
   Future<void> load() async {
-    String jsonStringValues = await rootBundle
-        .loadString('lib/app/localization/resources/${locale.languageCode}.json');
+    String jsonStringValues = await rootBundle.loadString(
+        'lib/app/localization/resources/${locale.languageCode}.json');
     log("locale Found");
     Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
     _localizedValues =
@@ -46,8 +46,7 @@ class Resources {
       _DemoLocalizationsDelegate();
 }
 
-class _DemoLocalizationsDelegate
-    extends LocalizationsDelegate<Resources> {
+class _DemoLocalizationsDelegate extends LocalizationsDelegate<Resources> {
   const _DemoLocalizationsDelegate();
 
   @override

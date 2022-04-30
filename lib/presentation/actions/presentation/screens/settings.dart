@@ -15,8 +15,6 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> with FunctionsActions {
-
-
   @override
   Widget build(BuildContext context) {
     var locale = Resources.of(context);
@@ -39,7 +37,8 @@ class _SettingsState extends State<Settings> with FunctionsActions {
                         locale.getResource(
                             'core.fixtures.languageCodes.${BlocProvider.of<ActionsCubit>(context).selectedLanguage}'),
                       ),
-                      value: BlocProvider.of<ActionsCubit>(context).selectedLanguage,
+                      value: BlocProvider.of<ActionsCubit>(context)
+                          .selectedLanguage,
                       items: List.generate(
                         LanguageCodes.values.length,
                         (index) => DropdownMenuItem<String>(
@@ -59,9 +58,11 @@ class _SettingsState extends State<Settings> with FunctionsActions {
                         ),
                       ),
                       onChanged: (value) {
-                        BlocProvider.of<ActionsCubit>(context).selectedLanguage = value ?? "";
                         BlocProvider.of<ActionsCubit>(context)
-                            .changeLanguage(BlocProvider.of<ActionsCubit>(context).selectedLanguage);
+                            .selectedLanguage = value ?? "";
+                        BlocProvider.of<ActionsCubit>(context).changeLanguage(
+                            BlocProvider.of<ActionsCubit>(context)
+                                .selectedLanguage);
                       },
                     ),
                   ),
@@ -72,7 +73,8 @@ class _SettingsState extends State<Settings> with FunctionsActions {
                         locale.getResource(
                             'core.fixtures.ThemeCodes.${BlocProvider.of<ActionsCubit>(context).selectedTheme}'),
                       ),
-                      value: BlocProvider.of<ActionsCubit>(context).selectedTheme,
+                      value:
+                          BlocProvider.of<ActionsCubit>(context).selectedTheme,
                       items: List.generate(
                         ThemeCodes.values.length,
                         (index) => DropdownMenuItem<String>(
@@ -92,9 +94,11 @@ class _SettingsState extends State<Settings> with FunctionsActions {
                         ),
                       ),
                       onChanged: (value) {
-                        BlocProvider.of<ActionsCubit>(context).selectedTheme = value ?? "";
-                        BlocProvider.of<ActionsCubit>(context)
-                            .changeTheme(BlocProvider.of<ActionsCubit>(context).selectedTheme);
+                        BlocProvider.of<ActionsCubit>(context).selectedTheme =
+                            value ?? "";
+                        BlocProvider.of<ActionsCubit>(context).changeTheme(
+                            BlocProvider.of<ActionsCubit>(context)
+                                .selectedTheme);
                       },
                     ),
                   ),

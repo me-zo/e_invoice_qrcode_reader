@@ -34,6 +34,7 @@ class InvoiceModel {
       scannedDate: scannedDate ?? this.scannedDate,
     );
   }
+
   factory InvoiceModel.empty() {
     return InvoiceModel(
       sellerName: "",

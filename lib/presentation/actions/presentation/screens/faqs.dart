@@ -12,7 +12,11 @@ class Faqs extends StatelessWidget with FunctionsActions {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(Resources.of(context).getResource("presentation.actions.faqsHeader"))),
+      appBar: AppBar(
+        title: Text(
+          Resources.of(context).getResource("presentation.actions.faqsHeader"),
+        ),
+      ),
       body: BlocBuilder<ActionsCubit, ActionsState>(
         builder: (context, state) {
           if (state is DisplayFaqs) {
@@ -54,8 +58,8 @@ class Faqs extends StatelessWidget with FunctionsActions {
                   );
           } else {
             return const Center(
-                child: Text("Error Happened"),
-              );
+              child: Text("Error Happened"),
+            );
           }
         },
       ),

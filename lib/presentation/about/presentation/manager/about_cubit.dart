@@ -19,6 +19,7 @@ class AboutCubit extends Cubit<AboutState> {
       (r) => emit(Loading()),
     );
   }
+
   void changeTheme() {
     emit(Loading());
     var result = aboutService.changeTheme();

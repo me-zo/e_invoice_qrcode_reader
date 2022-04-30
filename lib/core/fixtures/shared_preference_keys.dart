@@ -1,2 +1,1 @@
-class SharedPreferenceKeys {
-}
+class SharedPreferenceKeys {}

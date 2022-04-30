@@ -1,11 +1,10 @@
 import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
-
-import '../../../core/common/widgets/app_alert_dialogs.dart';
-import 'manager/history_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/common/widgets/app_alert_dialogs.dart';
 import 'manager/functions_history.dart';
+import 'manager/history_cubit.dart';
 import 'screens/invoice_list.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -41,7 +40,8 @@ class _HistoryPageState extends State<HistoryPage> with FunctionsHistory {
           onPressed: () {
             AppAlertDialog.confirmationDialog(
               context,
-              message: Resources.of(context).getResource("presentation.history.deleteConfirmMessage"),
+              message: Resources.of(context)
+                  .getResource("presentation.history.deleteConfirmMessage"),
               onCancel: () => Navigator.of(context).pop(),
               onNext: () {
                 BlocProvider.of<HistoryCubit>(context).clearAll();

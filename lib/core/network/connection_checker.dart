@@ -14,6 +14,7 @@ class ConnectionCheckerImpl extends ConnectionChecker {
   @override
   Future<bool> isConnected() async {
     var connectivityResult = await connectivity.checkConnectivity();
-    return connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi;
+    return connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi;
   }
 }

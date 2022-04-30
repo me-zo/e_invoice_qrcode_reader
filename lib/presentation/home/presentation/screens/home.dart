@@ -32,8 +32,10 @@ class Home extends StatelessWidget with FunctionsHome {
               horizontal: 8,
               vertical: 5,
             ),
-            child: Text( Resources.of(context).getResource(
-                "presentation.home.scanFromGallery").toUpperCase(),
+            child: Text(
+              Resources.of(context)
+                  .getResource("presentation.home.scanFromGallery")
+                  .toUpperCase(),
             ),
           ),
         ),
@@ -61,7 +63,9 @@ class _OrDividerWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            Resources.of(context).getResource("presentation.home.or").toUpperCase(),
+            Resources.of(context)
+                .getResource("presentation.home.or")
+                .toUpperCase(),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
@@ -143,7 +147,8 @@ class _ScanViaCameraAnimatedIconState extends State<_ScanViaCameraAnimatedIcon>
               children: [
                 Icon(
                   Icons.qr_code_scanner_outlined,
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                  color:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
                   size: 165,
                 ),
                 Align(
