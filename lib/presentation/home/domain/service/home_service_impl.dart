@@ -18,7 +18,10 @@ class HomeServiceImpl implements HomeService {
   Either<Failure, InvoiceModel> validateQrCode(String scannedString) =>
       FailureHandler.handleEither<InvoiceModel>(
         () {
-          var scannedInvoice = _validateQrCodeStringEncryption(scannedString);
+          var scannedInvoice = FailureHandler.handle(
+            () => _validateQrCodeStringEncryption(scannedString),
+            _InvalidScanFailure(message: "presentation.home.invalidScanError"),
+          );
           invoiceRepository.insert(
             invoiceEntity: InvoiceEntity(
               sellerName: scannedInvoice.sellerName,
@@ -40,38 +43,32 @@ class HomeServiceImpl implements HomeService {
     final Uint8List qrCodeAsBytes = b64Decoder.convert(scannedString);
     int start = 0, end = 0, index = 0;
     InvoiceModel scannedInvoice = InvoiceModel.empty();
-    FailureHandler.handle(
-      () {
-        for (int counter = 0; counter < 5; counter++) {
-          index = start + 1;
-          end = start + qrCodeAsBytes[index] + 2;
-          start = index + 1;
+    for (int counter = 0; counter < 5; counter++) {
+      index = start + 1;
+      end = start + qrCodeAsBytes[index] + 2;
+      start = index + 1;
 
-          var value = utf8.decode(qrCodeAsBytes.sublist(start, end));
-          if (counter > 2) {
-            value = value + " SAR";
-          }
-          if (counter == 0) {
-            scannedInvoice = scannedInvoice.copyWith(sellerName: value);
-          }
-          if (counter == 1) {
-            scannedInvoice = scannedInvoice.copyWith(sellerTaxNumber: value);
-          }
-          if (counter == 2) {
-            scannedInvoice = scannedInvoice.copyWith(invoiceDate: value);
-          }
-          if (counter == 3) {
-            scannedInvoice = scannedInvoice.copyWith(invoiceTotal: value);
-          }
-          if (counter == 4) {
-            scannedInvoice = scannedInvoice.copyWith(taxTotal: value);
-          }
-          start = end;
-        }
-      },
-      _InvalidScanFailure(message: "presentation.home.invalidScanError"),
-    );
-
+      var value = utf8.decode(qrCodeAsBytes.sublist(start, end));
+      if (counter > 2) {
+        value = value + " SAR";
+      }
+      if (counter == 0) {
+        scannedInvoice = scannedInvoice.copyWith(sellerName: value);
+      }
+      if (counter == 1) {
+        scannedInvoice = scannedInvoice.copyWith(sellerTaxNumber: value);
+      }
+      if (counter == 2) {
+        scannedInvoice = scannedInvoice.copyWith(invoiceDate: value);
+      }
+      if (counter == 3) {
+        scannedInvoice = scannedInvoice.copyWith(invoiceTotal: value);
+      }
+      if (counter == 4) {
+        scannedInvoice = scannedInvoice.copyWith(taxTotal: value);
+      }
+      start = end;
+    }
     return scannedInvoice;
   }
 }

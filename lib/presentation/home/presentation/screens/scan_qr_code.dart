@@ -46,9 +46,9 @@ class _ScanQrCodeState extends State<ScanQrCode> {
                               builder:
                                   (context, AsyncSnapshot<bool?> snapshot) {
                                 if (snapshot.data ?? false) {
-                                  return const Icon(Icons.flash_off);
+                                  return Icon(Icons.flash_off,color: Theme.of(context).colorScheme.tertiary,);
                                 } else {
-                                  return const Icon(Icons.flash_on);
+                                  return Icon(Icons.flash_on,color: Theme.of(context).colorScheme.tertiary,);
                                 }
                               },
                             )),
@@ -80,14 +80,14 @@ class _ScanQrCodeState extends State<ScanQrCode> {
               if (snapshot.data != null) {
                 switch (snapshot.data) {
                   case CameraFacing.front:
-                    return const Icon(Icons.camera_rear);
+                    return Icon(Icons.camera_rear,color: Theme.of(context).colorScheme.tertiary,);
                   case CameraFacing.back:
-                    return const Icon(Icons.camera_front);
+                    return Icon(Icons.camera_front,color: Theme.of(context).colorScheme.tertiary,);
                   default:
-                    return const Icon(Icons.camera);
+                    return Icon(Icons.camera,color: Theme.of(context).colorScheme.tertiary,);
                 }
               } else {
-                return const Icon(Icons.camera);
+                return Icon(Icons.camera,color: Theme.of(context).colorScheme.tertiary,);
               }
             },
           )),
@@ -122,9 +122,13 @@ class _ScanQrCodeState extends State<ScanQrCode> {
     controller.scannedDataStream.listen((scanData) {
       result = scanData;
       if (result != null) {
-        BlocProvider.of<HomeCubit>(context).stopScanner(
-          scannedString: result!.code ?? "",
-        );
+        controller.pauseCamera();
+        controller.stopCamera();
+        Future.delayed(Duration.zero, () {
+          BlocProvider.of<HomeCubit>(context).stopScanner(
+            scannedString: result!.code ?? "",
+          );
+        });
       }
     });
   }

@@ -13,7 +13,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     Future.delayed(
-      const Duration(seconds: 1),
+      const Duration(seconds: 2),
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
@@ -24,6 +24,7 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(const AssetImage("assets/images/1x/logo.png"), context);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
       body: Container(
@@ -32,8 +33,8 @@ class _SplashState extends State<Splash> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(
-              "assets/images/logo.png",
+            const Image(
+              image: AssetImage("assets/images/1x/logo.png"),
               height: 95,
               width: 100,
               fit: BoxFit.fill,

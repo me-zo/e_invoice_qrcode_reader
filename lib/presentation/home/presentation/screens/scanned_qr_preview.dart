@@ -111,7 +111,7 @@ class _ScannedDetailsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Padding(
+               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.list_alt),
               ),
@@ -149,8 +149,20 @@ class _WrongScannedInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(10),
-        color: Colors.grey.shade700,
+        boxShadow: [
+        BoxShadow(
+          offset: const Offset(2, 2),
+          blurRadius: 3,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+        BoxShadow(
+          offset: const Offset(-2, -2),
+          blurRadius: 3,
+          color: Theme.of(context).colorScheme.surface,
+        ),
+      ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

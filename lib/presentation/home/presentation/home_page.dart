@@ -26,7 +26,18 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return BlocListener<HomeCubit, HomeState>(
+        listener: (context, state) {
+      if (state is ScanQrCode) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) =>
+                ScannedQrPreview(scannedData: state.scannedString),
+          ),
+        );
+      }
+    },
+    child: DefaultTabController(
       initialIndex: 1,
       length: 3,
       child: Scaffold(
@@ -63,28 +74,17 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
                 ))
           ],
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            const HistoryPage(),
-            BlocListener<HomeCubit, HomeState>(
-              listener: (context, state) {
-                if (state is ScanQrCode) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ScannedQrPreview(scannedData: state.scannedString),
-                    ),
-                  );
-                }
-              },
-              child: const Home(),
-            ),
-            const Center(
+            HistoryPage(),
+            Home(),
+            Center(
               child: Text("About Us"),
             ),
           ],
         ),
       ),
+    ),
     );
   }
 }
