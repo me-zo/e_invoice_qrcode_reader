@@ -39,7 +39,7 @@ class _ActionsPageState extends State<ActionsPage> with FunctionsActions {
   Widget build(BuildContext context) {
     switch (widget.action) {
       case ActionName.faqs:
-        return const Faqs();
+        return Faqs();
       case ActionName.settings:
         return const Settings();
       default:

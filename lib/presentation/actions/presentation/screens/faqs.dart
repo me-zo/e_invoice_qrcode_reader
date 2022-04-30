@@ -1,14 +1,18 @@
 import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
-import 'package:e_invoice_qrcode_reader/presentation/actions/domain/models/faqs_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../manager/actions_cubit.dart';
 import '../manager/functions_actions.dart';
 
-class Faqs extends StatelessWidget with FunctionsActions {
+class Faqs extends StatefulWidget with FunctionsActions {
   const Faqs({Key? key}) : super(key: key);
 
+  @override
+  State<Faqs> createState() => _FaqsState();
+}
+
+class _FaqsState extends State<Faqs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,35 +30,58 @@ class Faqs extends StatelessWidget with FunctionsActions {
                       "No Questions Yet!",
                     ),
                   )
-                : ListView.separated(
-                    itemCount: state.info.questions.length,
-                    separatorBuilder: (context, index) {
-                      return const Divider(thickness: 2);
-                    },
-                    itemBuilder: (context, index) {
-                      return Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                offset: Offset(1, 3),
-                                blurRadius: 5,
-                                color: Colors.white,
-                              ),
-                              BoxShadow(
-                                offset: Offset(-2, -1),
-                                blurRadius: 3,
-                                color: Colors.black87,
-                              ),
-                            ],
-                            color: Colors.grey.shade700),
-                        child: _FaqsQuestion(
-                          question: state.info.questions[index],
+                : Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(2, 2),
+                          blurRadius: 3,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
-                      );
-                    },
+                        BoxShadow(
+                          offset: const Offset(-2, -2),
+                          blurRadius: 3,
+                          color: Theme.of(context).colorScheme.onBackground,
+                        ),
+                      ],
+                      color: Theme.of(context).cardColor,
+                    ),
+                    margin: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(4),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ExpansionPanelList(
+                          elevation: 0,
+                          expansionCallback: (index, isExpanded) {
+                            setState(
+                              () {
+                                BlocProvider.of<ActionsCubit>(context)
+                                    .faqsIsExpanded[index] = !isExpanded;
+                              },
+                            );
+                          },
+                          children: List.generate(
+                            state.info.questions.length,
+                            (index) => ExpansionPanel(
+                              headerBuilder: (context, expanded) => Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text( Resources.of(context).getResource(state.info.questions[index].title),
+                                style: BlocProvider.of<ActionsCubit>(context)
+                                    .faqsIsExpanded[index] ? TextStyle(color: Theme.of(context).colorScheme.secondary) : null,),
+                              ),
+                              body: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(Resources.of(context).getResource(state.info.questions[index].answer)),
+                              ),
+                              isExpanded: BlocProvider.of<ActionsCubit>(context)
+                                  .faqsIsExpanded[index],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   );
           } else {
             return const Center(
@@ -64,16 +91,5 @@ class Faqs extends StatelessWidget with FunctionsActions {
         },
       ),
     );
-  }
-}
-
-class _FaqsQuestion extends StatelessWidget {
-  final FaqsQuestionModel question;
-
-  const _FaqsQuestion({Key? key, required this.question}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

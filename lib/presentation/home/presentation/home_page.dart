@@ -1,3 +1,4 @@
+import 'package:e_invoice_qrcode_reader/presentation/about/presentation/about_page.dart';
 import 'package:e_invoice_qrcode_reader/presentation/actions/presentation/actions_page.dart';
 import 'package:e_invoice_qrcode_reader/presentation/history/presentation/history_page.dart';
 import 'package:e_invoice_qrcode_reader/presentation/home/presentation/manager/home_cubit.dart';
@@ -78,9 +79,7 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
           children: [
             HistoryPage(),
             Home(),
-            Center(
-              child: Text("About Us"),
-            ),
+            AboutPage(),
           ],
         ),
       ),

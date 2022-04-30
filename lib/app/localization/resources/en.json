@@ -18,6 +18,10 @@
   "presentation.actions.appTheme" : "Themes:",
   "presentation.actions.settingsHeader" : "Settings",
   "presentation.actions.faqsHeader" : "Frequently Asked Questions",
+  "presentation.actions.faqsQuestion1Title" : "What is E-Invoice QR Code Reader?",
+  "presentation.actions.faqsQuestion2Title" : "What information should the QR Code Include?",
+  "presentation.actions.faqsQuestion1Body" : "This is an app that has been developed from Mezo Technologies To aid in reading the QR Code of any E-Invoice",
+  "presentation.actions.faqsQuestion2Body" : "The E-Invoice Should Include:\n1. The Seller's Name.\n2. The Merchant TAX Registration Number.\n3. The Date/Time the invoice was created\n4. The Invoice Total Value.\n5. The TAX Total Value.",
 
   "presentation.history.deleteConfirmMessage" : "Are you sure you want to clear the history of scanned invoices?",
   "presentation.history.emptyHistory" : "No History, Scan Some QR Codes!",

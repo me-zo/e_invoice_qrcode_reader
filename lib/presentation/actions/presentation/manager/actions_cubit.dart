@@ -15,7 +15,7 @@ class ActionsCubit extends Cubit<ActionsState> {
   SettingsModel settingsModel = SettingsModel.empty();
   String selectedLanguage = "";
   String selectedTheme = "";
-
+  late List<bool> faqsIsExpanded;
   void prepareSettings() {
     emit(Loading());
     var result = actionsService.loadSettings();
@@ -36,6 +36,7 @@ class ActionsCubit extends Cubit<ActionsState> {
     result.fold(
       (l) => emit(ShowError(message: l.message)),
       (r) {
+        faqsIsExpanded = List.generate(r.questions.length, (index) => false);
         emit(DisplayFaqs(info: r));
       },
     );

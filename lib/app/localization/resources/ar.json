@@ -18,6 +18,11 @@
   "presentation.actions.appTheme" : "النمط:",
   "presentation.actions.settingsHeader" : "الإعدادات",
   "presentation.actions.faqsHeader" : "الأسئلة الشائعة",
+  "presentation.actions.faqsQuestion1Title" : "ما هو قارئ رمز الاستجابة السريعة للفاتورة الإلكترونية؟",
+  "presentation.actions.faqsQuestion2Title" : "ما هي المعلومات التي يجب أن يتضمنها رمز الاستجابة السريعة؟",
+  "presentation.actions.faqsQuestion1Body" : "هذا تطبيق تم تطويره من Mezo Technologies للمساعدة في قراءة رمز الاستجابة السريعة لأي فاتورة إلكترونية",
+  "presentation.actions.faqsQuestion2Body" : "يجب أن تتضمن الفاتورة الإلكترونية: \n1. اسم البائع. \n2. رقم تسجيل ضريبة التاجر. \n3. تاريخ / وقت إنشاء الفاتورة \n4. إجمالي قيمة الفاتورة. \n5. القيمة الإجمالية للضريبة.",
+
 
   "presentation.history.deleteConfirmMessage" : "هل أنت متأكد أنك تريد حذف تاريخ الفواتير الممسوحة؟",
   "presentation.history.emptyHistory" : "لا يوجد فواتير، قم بمسح بعض الأكواد",

@@ -44,7 +44,14 @@ class ActionsServiceImpl implements ActionsService {
   Either<Failure, FaqsListModel> loadFaqs() =>
       FailureHandler.handleEither<FaqsListModel>(
         () {
-          return Right(FaqsListModel.empty());
+          return Right(FaqsListModel(questions: [
+            FaqsQuestionModel(
+                title: "presentation.actions.faqsQuestion1Title",
+                answer: "presentation.actions.faqsQuestion1Body"),
+            FaqsQuestionModel(
+                title: "presentation.actions.faqsQuestion2Title",
+                answer: "presentation.actions.faqsQuestion2Body"),
+          ]));
         },
         "Error Changing App Theme",
       );
