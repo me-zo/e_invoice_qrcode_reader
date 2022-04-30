@@ -1,6 +1,5 @@
-export 'localization/app_localization.dart';
+export 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
 
 export 'failures/failure_handler.dart';
-export 'failures/failures.dart';
-export 'network/http_client.dart';
+export 'failures/failure.dart';
 

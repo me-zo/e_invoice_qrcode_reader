@@ -1,7 +1,7 @@
-import 'package:e_invoice_qrcode_reader/app/app_theme/button_styles.dart';
+import 'package:e_invoice_qrcode_reader/app/app_theme/styles/button_styles.dart';
+import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
 import 'package:flutter/material.dart';
 
-import '../../localization/app_localization.dart';
 
 /// returns a template for an Alert dialog
 ///
@@ -54,26 +54,26 @@ mixin AppAlertDialog {
               const EdgeInsets.only(top: 15, bottom: 5, left: 15, right: 15),
           contentPadding:
               const EdgeInsets.only(top: 5, bottom: 15, left: 15, right: 15),
-          title: Text(AppLocalizations.of(context)!.translate("are_you_sure"),
+          title: Text(Resources.of(context).getResource("core.common.areYouSure"),
               textAlign: TextAlign.start),
           content: Text(
               message.isNotEmpty
                   ? message
-                  : AppLocalizations.of(context)!
-                      .translate("are_you_sure_body"),
+                  : Resources.of(context)
+                      .getResource("core.common.areYouSureBody"),
               textAlign: TextAlign.start),
           actions: [
             OutlinedButton(
               style: ButtonStyles.red(outlined: true),
               child: Text(
-                AppLocalizations.of(context)!.translate("cancel").toUpperCase(),
+                Resources.of(context).getResource("core.common.cancel").toUpperCase(),
               ),
               onPressed: onCancel,
             ),
             ElevatedButton(
-              style: ButtonStyles.primary(),
+              style: ButtonStyles.primary(Theme.of(context).colorScheme),
               child: Text(
-                AppLocalizations.of(context)!.translate("next").toUpperCase(),
+                Resources.of(context).getResource("core.common.confirm").toUpperCase(),
               ),
               onPressed: onNext,
             ),

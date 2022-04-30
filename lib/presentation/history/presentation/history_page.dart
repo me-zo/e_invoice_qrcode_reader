@@ -1,3 +1,5 @@
+import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
+
 import '../../../core/common/widgets/app_alert_dialogs.dart';
 import 'manager/history_cubit.dart';
 import 'package:flutter/material.dart';
@@ -33,13 +35,13 @@ class _HistoryPageState extends State<HistoryPage> with FunctionsHistory {
       floatingActionButton: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: Theme.of(context).colorScheme.primaryContainer,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         child: IconButton(
           onPressed: () {
             AppAlertDialog.confirmationDialog(
               context,
-              message: "Clear History",
+              message: Resources.of(context).getResource("presentation.history.deleteConfirmMessage"),
               onCancel: () => Navigator.of(context).pop(),
               onNext: () {
                 BlocProvider.of<HistoryCubit>(context).clearAll();
@@ -48,7 +50,7 @@ class _HistoryPageState extends State<HistoryPage> with FunctionsHistory {
             );
           },
           icon: const Icon(
-            Icons.clear_all,
+            Icons.delete,
           ),
           color: Colors.white,
         ),

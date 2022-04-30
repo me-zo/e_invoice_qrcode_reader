@@ -13,7 +13,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 1),
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
@@ -25,7 +25,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[900]!.withBlue(80),
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 50),
         alignment: Alignment.bottomCenter,
@@ -34,16 +34,20 @@ class _SplashState extends State<Splash> {
           children: [
             Image.asset(
               "assets/images/logo.png",
-              height: 100,
+              height: 95,
+              width: 100,
+              fit: BoxFit.fill,
             ),
-            const Padding(
-              padding: EdgeInsets.all(8),
+            Padding(
+              padding: const EdgeInsets.all(8),
               child: Text(
                 "Mezo\nTechnologies",
                 style: TextStyle(
-                    fontSize: 16,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.bold),
+                  fontSize: 16,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),

@@ -5,11 +5,6 @@ abstract class ActionsState {}
 
 class ActionsInitial extends ActionsState {}
 
-class ScanQrCode extends ActionsState {
-  ScanQrCode({required this.scannedString});
-  final String scannedString;
-}
-
 class ShowError extends ActionsState {
   ShowError({required this.message});
   final String message;
@@ -18,7 +13,11 @@ class ShowError extends ActionsState {
 class Loading extends ActionsState {
 }
 
-class DisplayInvoiceList extends ActionsState {
-  DisplayInvoiceList({required this.info});
-  final InvoiceListModel info;
+class DisplayFaqs extends ActionsState {
+  DisplayFaqs({required this.info});
+  final FaqsListModel info;
+}
+class DisplaySettings extends ActionsState {
+  DisplaySettings({required this.info});
+  final SettingsModel info;
 }

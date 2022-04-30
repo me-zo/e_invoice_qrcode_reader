@@ -16,7 +16,7 @@ class HomeServiceImpl implements HomeService {
 
   @override
   Either<Failure, InvoiceModel> validateQrCode(String scannedString) =>
-      FailureHandler.handleFunction<InvoiceModel>(
+      FailureHandler.handleEither<InvoiceModel>(
         () {
           var scannedInvoice = _validateQrCodeStringEncryption(scannedString);
           invoiceRepository.insert(
@@ -29,12 +29,9 @@ class HomeServiceImpl implements HomeService {
               scannedDate: scannedInvoice.scannedDate,
             ),
           );
-          return scannedInvoice;
+          return Right(scannedInvoice);
         },
-        "The Scanned QR Code is not compliant with ZATCA standards",
-      ).fold(
-        (l) => Left(l),
-        (r) => Right(r),
+        "presentation.home.invalidScanError1",
       );
 
   InvoiceModel _validateQrCodeStringEncryption(String scannedString) {
@@ -43,33 +40,42 @@ class HomeServiceImpl implements HomeService {
     final Uint8List qrCodeAsBytes = b64Decoder.convert(scannedString);
     int start = 0, end = 0, index = 0;
     InvoiceModel scannedInvoice = InvoiceModel.empty();
+    FailureHandler.handle(
+      () {
+        for (int counter = 0; counter < 5; counter++) {
+          index = start + 1;
+          end = start + qrCodeAsBytes[index] + 2;
+          start = index + 1;
 
-    for (int counter = 0; counter < 5; counter++) {
-      index = start + 1;
-      end = start + qrCodeAsBytes[index] + 2;
-      start = index + 1;
+          var value = utf8.decode(qrCodeAsBytes.sublist(start, end));
+          if (counter > 2) {
+            value = value + " SAR";
+          }
+          if (counter == 0) {
+            scannedInvoice = scannedInvoice.copyWith(sellerName: value);
+          }
+          if (counter == 1) {
+            scannedInvoice = scannedInvoice.copyWith(sellerTaxNumber: value);
+          }
+          if (counter == 2) {
+            scannedInvoice = scannedInvoice.copyWith(invoiceDate: value);
+          }
+          if (counter == 3) {
+            scannedInvoice = scannedInvoice.copyWith(invoiceTotal: value);
+          }
+          if (counter == 4) {
+            scannedInvoice = scannedInvoice.copyWith(taxTotal: value);
+          }
+          start = end;
+        }
+      },
+      _InvalidScanFailure(message: "presentation.home.invalidScanError"),
+    );
 
-      var value = utf8.decode(qrCodeAsBytes.sublist(start, end));
-      if (counter > 2) {
-        value = value + " SAR";
-      }
-      if (counter == 0) {
-        scannedInvoice = scannedInvoice.copyWith(sellerName: value);
-      }
-      if (counter == 1) {
-        scannedInvoice = scannedInvoice.copyWith(sellerTaxNumber: value);
-      }
-      if (counter == 2) {
-        scannedInvoice = scannedInvoice.copyWith(invoiceDate: value);
-      }
-      if (counter == 3) {
-        scannedInvoice = scannedInvoice.copyWith(invoiceTotal: value);
-      }
-      if (counter == 4) {
-        scannedInvoice = scannedInvoice.copyWith(taxTotal: value);
-      }
-      start = end;
-    }
     return scannedInvoice;
   }
+}
+
+class _InvalidScanFailure extends Failure {
+  _InvalidScanFailure({required String message}) : super(message: message);
 }

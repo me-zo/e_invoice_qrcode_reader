@@ -1,45 +1,25 @@
+import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
 import 'package:flutter/material.dart';
 
-import '../../localization/app_localization.dart';
 
 mixin AppSnackBar {
-  static void errorSnackBar(BuildContext context, {String message = ""}) {
+
+  static void notificationSnackBar(BuildContext context, {String message = ""}) {
     ScaffoldMessenger.of(context).showSnackBar(_snackBarWidget(
       context,
       message: message,
-      backgroundColor: Colors.red.shade900.withOpacity(0.9),
-    ));
-  }
-
-  static void successSnackBar(BuildContext context, {String? resourceKey}) {
-    ScaffoldMessenger.of(context).showSnackBar(_snackBarWidget(
-      context,
-      message: resourceKey ?? "success_message",
-      backgroundColor: Colors.greenAccent.withOpacity(0.9),
-    ));
-  }
-
-  static  void notificationSnackBar(BuildContext context, {String message = ""}) {
-    final theme = Theme.of(context);
-    ScaffoldMessenger.of(context).showSnackBar(_snackBarWidget(
-      context,
-      message: message,
-      backgroundColor: theme.colorScheme.primary,
     ));
   }
 
   static SnackBar _snackBarWidget(
     BuildContext context, {
     required String message,
-    required Color backgroundColor,
   }) {
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
     return SnackBar(
       content: Text(
-        AppLocalizations.of(context)!.translate(message),
-        style: Theme.of(context).textTheme.bodyText2,
+        Resources.of(context).getResource(message),
       ),
-      backgroundColor: backgroundColor,
       duration: const Duration(seconds: 3),
       behavior: SnackBarBehavior.floating,
     );

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/common/models/invoice_model.dart';
 import '../../../../core/exports.dart';
-import '../../../../data/entities/invoice_entity.dart';
 import '../../../../data/repositories/invoice/invoice_repository.dart';
 import '../models/invoice_list_model.dart';
 
@@ -14,16 +13,13 @@ class HistoryServiceImpl implements HistoryService {
 
   @override
   Either<Failure, InvoiceListModel> invoiceList() =>
-      FailureHandler.handleFunction<List<InvoiceEntity>>(
-        () => invoiceRepository.getAll(),
-        "The Scanned QR Code is not compliant with ZATCA standards",
-      ).fold(
-        (l) => Left(l),
-        (r) {
+      FailureHandler.handleEither<InvoiceListModel>(
+        () {
+          var r = invoiceRepository.getAll();
           InvoiceListModel invoices = InvoiceListModel(
             invoices: List.generate(
               r.length,
-              (index) => InvoiceModel(
+                  (index) => InvoiceModel(
                 sellerName: r[index].sellerName,
                 sellerTaxNumber: r[index].sellerTaxNumber,
                 invoiceDate: r[index].invoiceDate,
@@ -35,17 +31,12 @@ class HistoryServiceImpl implements HistoryService {
           );
           return Right(invoices);
         },
+        "An error happened while fetching the history",
       );
 
   @override
-  Either<Failure, void> clearList() => FailureHandler.handleFunction<void>(
-        () => invoiceRepository.getAll(),
-        "The Scanned QR Code is not compliant with ZATCA standards",
-      ).fold(
-        (l) => Left(l),
-        (r) {
-          invoiceRepository.deleteAll();
-          return const Right(null);
-        },
+  Either<Failure, void> clearList() => FailureHandler.handleEither<void>(
+        () => Right(invoiceRepository.deleteAll()),
+        "An Error happened when clearing history",
       );
 }

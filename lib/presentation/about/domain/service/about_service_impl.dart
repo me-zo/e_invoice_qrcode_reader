@@ -10,38 +10,20 @@ class AboutServiceImpl implements AboutService {
   AboutServiceImpl({required this.invoiceRepository});
 
   @override
-  Either<Failure, void> changeLanguage() => FailureHandler.handleFunction<void>(
-        () => invoiceRepository.getAll(),
+  Either<Failure, void> changeLanguage() => FailureHandler.handleEither<void>(
+        () => Right(null),
     "The Scanned QR Code is not compliant with ZATCA standards",
-  ).fold(
-        (l) => Left(l),
-        (r) {
-      invoiceRepository.deleteAll();
-      return const Right(null);
-    },
   );
 
   @override
-  Either<Failure, void> changeTheme() => FailureHandler.handleFunction<void>(
-        () => invoiceRepository.getAll(),
+  Either<Failure, void> changeTheme() => FailureHandler.handleEither<void>(
+        () => Right(null),
     "The Scanned QR Code is not compliant with ZATCA standards",
-  ).fold(
-        (l) => Left(l),
-        (r) {
-      invoiceRepository.deleteAll();
-      return const Right(null);
-    },
   );
 
   @override
-  Either<Failure, void> loadSettings() => FailureHandler.handleFunction<void>(
-        () => invoiceRepository.getAll(),
+  Either<Failure, void> loadSettings() => FailureHandler.handleEither<void>(
+        () => Right(null),
     "The Scanned QR Code is not compliant with ZATCA standards",
-  ).fold(
-        (l) => Left(l),
-        (r) {
-      invoiceRepository.deleteAll();
-      return const Right(null);
-    },
   );
 }

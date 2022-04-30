@@ -1,16 +1,20 @@
-import '../../../core/common/widgets/app_alert_dialogs.dart';
-import 'manager/actions_cubit.dart';
+import 'package:e_invoice_qrcode_reader/presentation/actions/presentation/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'manager/actions_cubit.dart';
 import 'manager/functions_actions.dart';
 import 'screens/faqs.dart';
+
+enum ActionName { faqs, settings }
 
 class ActionsPage extends StatefulWidget {
   const ActionsPage({
     Key? key,
+    required this.action,
   }) : super(key: key);
   static const routeName = "/ActionsPage";
+  final ActionName action;
 
   @override
   State<ActionsPage> createState() => _ActionsPageState();
@@ -19,40 +23,31 @@ class ActionsPage extends StatefulWidget {
 class _ActionsPageState extends State<ActionsPage> with FunctionsActions {
   @override
   void initState() {
-    BlocProvider.of<ActionsCubit>(context).prepareSettings();
+    switch (widget.action) {
+      case ActionName.faqs:
+        BlocProvider.of<ActionsCubit>(context).prepareFaqs();
+        break;
+      case ActionName.settings:
+        BlocProvider.of<ActionsCubit>(context).prepareSettings();
+        break;
+    }
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Faqs(),
-      ),
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Theme.of(context).colorScheme.primaryContainer,
-        ),
-        child: IconButton(
-          onPressed: () {
-            AppAlertDialog.confirmationDialog(
-              context,
-              message: "Clear History",
-              onCancel: () => Navigator.of(context).pop(),
-              onNext: () {
-                BlocProvider.of<ActionsCubit>(context).changeTheme();
-                Navigator.of(context).pop();
-              },
-            );
-          },
-          icon: const Icon(
-            Icons.clear_all,
+    switch (widget.action) {
+      case ActionName.faqs:
+        return const Faqs();
+      case ActionName.settings:
+        return const Settings();
+      default:
+        return const Scaffold(
+          body: Center(
+            child: Text("Error Happened"),
           ),
-          color: Colors.white,
-        ),
-      ),
-    );
+        );
+    }
   }
 }

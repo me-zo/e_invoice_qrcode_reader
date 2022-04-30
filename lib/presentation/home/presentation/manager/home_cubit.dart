@@ -15,7 +15,11 @@ class HomeCubit extends Cubit<HomeState> {
     var result = homeService.validateQrCode(scannedString);
     result.fold(
       (l) => emit(ShowError(message: l.message)),
-      (r) => emit(DisplayScannedInfo(info:r)),
+      (r) => emit(DisplayScannedInfo(info: r)),
     );
+  }
+
+  void stopScanner({required String scannedString}) {
+    emit(ScanQrCode(scannedString: scannedString));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/failures/failures.dart';
+import '../../../../core/failures/failure.dart';
 
 abstract class AboutService {
   Either<Failure, void> loadSettings();

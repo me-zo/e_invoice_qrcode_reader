@@ -1,5 +1,9 @@
+import 'package:e_invoice_qrcode_reader/presentation/actions/presentation/actions_page.dart';
 import 'package:e_invoice_qrcode_reader/presentation/history/presentation/history_page.dart';
+import 'package:e_invoice_qrcode_reader/presentation/home/presentation/manager/home_cubit.dart';
+import 'package:e_invoice_qrcode_reader/presentation/home/presentation/screens/scanned_qr_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'manager/functions_home.dart';
 import 'screens/home.dart';
@@ -27,13 +31,16 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 10,
-          backgroundColor: Theme.of(context).colorScheme.onBackground,
           leading: IconButton(
-              onPressed: () {},
-              icon: Icon(
+              onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ActionsPage(
+                        action: ActionName.faqs,
+                      ),
+                    ),
+                  ),
+              icon: const Icon(
                 Icons.contact_support,
-                color: Theme.of(context).colorScheme.inversePrimary,
               )),
           bottom: const TabBar(
             tabs: [
@@ -44,18 +51,35 @@ class _HomePageState extends State<HomePage> with FunctionsHome {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
-                icon: Icon(
+                onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const ActionsPage(
+                          action: ActionName.settings,
+                        ),
+                      ),
+                    ),
+                icon: const Icon(
                   Icons.settings,
-                  color: Theme.of(context).colorScheme.inversePrimary,
                 ))
           ],
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            HistoryPage(),
-            Home(),
-            Center(
+            const HistoryPage(),
+            BlocListener<HomeCubit, HomeState>(
+              listener: (context, state) {
+                if (state is ScanQrCode) {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ScannedQrPreview(scannedData: state.scannedString),
+                      ),
+                    );
+                }
+              },
+              child: const Home(),
+            ),
+            const Center(
               child: Text("About Us"),
             ),
           ],

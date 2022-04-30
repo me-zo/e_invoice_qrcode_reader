@@ -1,8 +1,9 @@
+import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
 import 'package:e_invoice_qrcode_reader/core/helpers/common_helper.dart';
 import 'package:flutter/material.dart';
 
-import '../../fixtures/tlv_model_keys.dart';
 import '../models/invoice_model.dart';
+
 
 class ScannedDetailsCardWidget extends StatelessWidget {
   final InvoiceModel info;
@@ -14,21 +15,22 @@ class ScannedDetailsCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var locale = Resources.of(context);
     return Column(
       children: [
-        _InvoiceDataRow(title: TlvModelKeys.sellerName, value: info.sellerName),
+        _InvoiceDataRow(title: locale.getResource("core.common.sellerName"), value: info.sellerName),
         const Divider(),
         _InvoiceDataRow(
-            title: TlvModelKeys.sellerTaxNumber, value: info.sellerTaxNumber),
+            title: locale.getResource("core.common.sellerTaxNumber"), value: info.sellerTaxNumber),
         const Divider(),
         _InvoiceDataRow(
-            title: TlvModelKeys.invoiceDate, value: info.invoiceDate),
+            title: locale.getResource("core.common.invoiceDate"), value: info.invoiceDate),
         const Divider(),
         _InvoiceDataRow(
-            title: TlvModelKeys.invoiceTotal, value: info.invoiceTotal),
+            title: locale.getResource("core.common.invoiceTotal"), value: info.invoiceTotal),
         const Divider(),
         _InvoiceDataRow(
-          title: TlvModelKeys.taxTotal,
+          title: locale.getResource("core.common.taxTotal"),
           value: info.taxTotal,
           date: CommonHelper.formatDate(date: info.scannedDate, timeOnly: true),
         ),

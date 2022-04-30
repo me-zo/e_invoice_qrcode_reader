@@ -1,0 +1,32 @@
+{
+  "core.fixtures.languageCodes.ar" : "العربية",
+  "core.fixtures.languageCodes.en" : "English",
+  "core.fixtures.ThemeCodes.light" : "Light Theme",
+  "core.fixtures.ThemeCodes.dark" : "Dark Theme",
+
+  "core.common.sellerName" : "Seller's Name:",
+  "core.common.sellerTaxNumber" : "Seller Tax Number:",
+  "core.common.invoiceDate" : "Invoice Date: ",
+  "core.common.invoiceTotal" : "Invoice Total: ",
+  "core.common.taxTotal" : "Tax Total:",
+  "core.common.areYouSure" : "Are you sure?",
+  "core.common.areYouSureBody" : "Please confirm that you would like to processed with this action.",
+  "core.common.cancel" : "Cancel",
+  "core.common.confirm" : "Confirm",
+
+  "presentation.actions.appLanguage" : "Application Language:",
+  "presentation.actions.appTheme" : "Themes:",
+  "presentation.actions.settingsHeader" : "Settings",
+  "presentation.actions.faqsHeader" : "Frequently Asked Questions",
+
+  "presentation.history.deleteConfirmMessage" : "Are you sure you want to clear the history of scanned invoices?",
+  "presentation.history.emptyHistory" : "No History, Scan Some QR Codes!",
+
+  "presentation.home.previewAppHeader" : "QR Code Scan Result",
+  "presentation.home.successScanPreviewHeader" : "Invoice Details",
+  "presentation.home.failingScanPreviewHeader" : "QR Code Data:",
+  "presentation.home.featureNotSupportedMessage" : "Sorry! This Feature Is not supported yet :(",
+  "presentation.home.invalidScanError" : "The Scanned QR Code is not compliant with ZATCA standards",
+  "presentation.home.scanFromGallery" : "Drowse Image",
+  "presentation.home.or" : "or"
+}

@@ -5,11 +5,6 @@ abstract class HistoryState {}
 
 class HistoryInitial extends HistoryState {}
 
-class ScanQrCode extends HistoryState {
-  ScanQrCode({required this.scannedString});
-  final String scannedString;
-}
-
 class ShowError extends HistoryState {
   ShowError({required this.message});
   final String message;

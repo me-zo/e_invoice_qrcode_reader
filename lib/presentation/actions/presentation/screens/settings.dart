@@ -1,93 +1,136 @@
-import '../../../../core/common/widgets/scanned_details_card.dart';
-import '../../../../core/helpers/common_helper.dart';
-import '../manager/actions_cubit.dart';
+import 'package:e_invoice_qrcode_reader/core/exports.dart';
+import 'package:e_invoice_qrcode_reader/core/fixtures/language_codes.dart';
+import 'package:e_invoice_qrcode_reader/core/fixtures/theme_codes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../manager/actions_cubit.dart';
 import '../manager/functions_actions.dart';
 
-class Settings extends StatelessWidget with FunctionsActions {
+class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 
   @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> with FunctionsActions {
+
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ActionsCubit, ActionsState>(
-      builder: (context, state) {
-        if (state is DisplayInvoiceList) {
-          return state.info.invoices.isEmpty
-              ? const Center(
-                  child: Text("Scan Some QRs!", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                )
-              : ListView.separated(
-                  itemCount: state.info.invoices.length,
-                  separatorBuilder: (context, index) {
-                    if (state.info.invoices[index].scannedDate.day.isEven) {
-                      return _DateDivider(
-                        date: state.info.invoices[index].scannedDate,
-                      );
-                    } else {
-                      return const Divider(thickness: 2);
-                    }
-                  },
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              offset: Offset(1, 3),
-                              blurRadius: 5,
-                              color: Colors.white,
-                            ),
-                            BoxShadow(
-                              offset: Offset(-2, -1),
-                              blurRadius: 3,
-                              color: Colors.black87,
-                            ),
-                          ],
-                          color: Colors.grey.shade700),
-                      child: ScannedDetailsCardWidget(
-                        info: state.info.invoices[index],
+    var locale = Resources.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(locale.getResource('presentation.actions.settingsHeader')),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: BlocBuilder<ActionsCubit, ActionsState>(
+          builder: (context, state) {
+            if (state is DisplaySettings) {
+              return Column(
+                children: [
+                  _SettingsRow(
+                    title:
+                        locale.getResource('presentation.actions.appLanguage'),
+                    child: DropdownButton<String>(
+                      hint: Text(
+                        locale.getResource(
+                            'core.fixtures.languageCodes.${BlocProvider.of<ActionsCubit>(context).selectedLanguage}'),
                       ),
-                    );
-                  },
-                );
-        } else {
-          return const Center(
-            child: Text("Error Happened"),
-          );
-        }
-      },
+                      value: BlocProvider.of<ActionsCubit>(context).selectedLanguage,
+                      items: List.generate(
+                        LanguageCodes.values.length,
+                        (index) => DropdownMenuItem<String>(
+                          value: LanguageCodes.values[index],
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            child: Text(
+                              locale.getResource(
+                                  'core.fixtures.languageCodes.${LanguageCodes.values[index]}'),
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        BlocProvider.of<ActionsCubit>(context).selectedLanguage = value ?? "";
+                        BlocProvider.of<ActionsCubit>(context)
+                            .changeLanguage(BlocProvider.of<ActionsCubit>(context).selectedLanguage);
+                      },
+                    ),
+                  ),
+                  _SettingsRow(
+                    title: locale.getResource('presentation.actions.appTheme'),
+                    child: DropdownButton<String>(
+                      hint: Text(
+                        locale.getResource(
+                            'core.fixtures.ThemeCodes.${BlocProvider.of<ActionsCubit>(context).selectedTheme}'),
+                      ),
+                      value: BlocProvider.of<ActionsCubit>(context).selectedTheme,
+                      items: List.generate(
+                        ThemeCodes.values.length,
+                        (index) => DropdownMenuItem<String>(
+                          value: ThemeCodes.values[index],
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            child: Text(
+                              locale.getResource(
+                                  'core.fixtures.ThemeCodes.${ThemeCodes.values[index]}'),
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        BlocProvider.of<ActionsCubit>(context).selectedTheme = value ?? "";
+                        BlocProvider.of<ActionsCubit>(context)
+                            .changeTheme(BlocProvider.of<ActionsCubit>(context).selectedTheme);
+                      },
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return const Center(
+                child: Text("Error Happened"),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }
 
-class _DateDivider extends StatelessWidget {
-  const _DateDivider({Key? key, required this.date}) : super(key: key);
-  final DateTime date;
+class _SettingsRow extends StatelessWidget {
+  const _SettingsRow({
+    Key? key,
+    required this.title,
+    required this.child,
+  }) : super(key: key);
+
+  final String title;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(
-            flex: 1,
-            child: Divider(
-              thickness: 2,
-            )),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-          child: Text(
-            CommonHelper.formatDate(date: date, withTime: true),
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-        ),
-        const Expanded(flex: 10, child: Divider(thickness: 2)),
+        Expanded(
+            child: Text(
+          title,
+        )),
+        child,
       ],
     );
   }

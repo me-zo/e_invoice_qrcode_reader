@@ -1,9 +1,9 @@
+import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
 import 'package:e_invoice_qrcode_reader/core/common/widgets/scanned_details_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/common/models/invoice_model.dart';
-import '../../../../core/common/widgets/app_snack_bar.dart';
 import '../manager/home_cubit.dart';
 
 class ScannedQrPreview extends StatefulWidget {
@@ -17,7 +17,7 @@ class ScannedQrPreview extends StatefulWidget {
   State<ScannedQrPreview> createState() => _ScannedQrPreviewState();
 }
 
-class _ScannedQrPreviewState extends State<ScannedQrPreview> with AppSnackBar {
+class _ScannedQrPreviewState extends State<ScannedQrPreview> {
   @override
   void initState() {
     BlocProvider.of<HomeCubit>(context).validateQrCode(
@@ -29,7 +29,12 @@ class _ScannedQrPreviewState extends State<ScannedQrPreview> with AppSnackBar {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Scan Result")),
+      appBar: AppBar(
+        title: Text(
+          Resources.of(context)
+              .getResource("presentation.home.previewAppHeader"),
+        ),
+      ),
       body: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.all(10),
@@ -45,6 +50,10 @@ class _ScannedQrPreviewState extends State<ScannedQrPreview> with AppSnackBar {
               return _WrongScannedInfo(
                 scannedData: widget.scannedData,
                 errorMessage: state.message,
+              );
+            } else if (state is Loading) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             } else {
               return Center(
@@ -82,20 +91,35 @@ class _ScannedDetailsCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: Colors.grey.shade700),
+        borderRadius: BorderRadius.circular(10),
+        color: Theme.of(context).cardColor,
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(2, 2),
+            blurRadius: 3,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          BoxShadow(
+            offset: const Offset(-2, -2),
+            blurRadius: 3,
+            color: Theme.of(context).colorScheme.surface,
+          ),
+        ],
+      ),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Padding(
+            children: [
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.list_alt),
               ),
               Expanded(
                 child: Text(
-                  "Invoice Details",
-                  style: TextStyle(
+                  Resources.of(context).getResource(
+                      "presentation.home.successScanPreviewHeader"),
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -134,10 +158,11 @@ class _WrongScannedInfo extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              errorMessage,
+              Resources.of(context).getResource(errorMessage),
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.red,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -147,9 +172,10 @@ class _WrongScannedInfo extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8.0),
                 alignment: Alignment.centerLeft,
-                child: const Text(
-                  "QR Code Data:",
-                  style: TextStyle(
+                child: Text(
+                  Resources.of(context).getResource(
+                      "presentation.home.failingScanPreviewHeader"),
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),

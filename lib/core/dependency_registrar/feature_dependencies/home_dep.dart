@@ -4,17 +4,15 @@ import '../../../../presentation/home/domain/service/home_service.dart';
 import '../../../../presentation/home/domain/service/home_service_impl.dart';
 import '../../../../presentation/home/presentation/manager/home_cubit.dart';
 
-Future<void> homeDependencies(GetIt sl) async {
-
-  sl.registerFactory<HomeService>(
-        () => HomeServiceImpl(
-          invoiceRepository: sl(),
+void homeDependencies(GetIt locator) {
+  locator.registerFactory<HomeService>(
+    () => HomeServiceImpl(
+      invoiceRepository: locator(),
     ),
   );
 
-  sl.registerFactory(
-        () => HomeCubit(
-          homeService: sl(),
-        ),
+  locator.registerSingleton<HomeCubit>(HomeCubit(
+      homeService: locator(),
+    ),
   );
 }

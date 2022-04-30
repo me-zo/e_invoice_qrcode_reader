@@ -1,9 +1,0 @@
-{
-"QuestionTypes.shortAnswer" : "Short Answer",
-"QuestionTypes.longAnswer" : "Long Answer",
-"QuestionTypes.multipleChoices" : "Multiple Choices",
-"QuestionTypes.checkBoxes" : "CheckBoxes",
-"QuestionTypes.dropDown" : "DropDown Menu",
-"QuestionTypes.date" : "Date"
-}
-

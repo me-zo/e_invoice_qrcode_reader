@@ -1,9 +1,7 @@
-import 'dart:io';
-
+import 'package:e_invoice_qrcode_reader/presentation/home/presentation/manager/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
-import 'scanned_qr_preview.dart';
 
 class ScanQrCode extends StatefulWidget {
   const ScanQrCode({Key? key}) : super(key: key);
@@ -18,31 +16,9 @@ class _ScanQrCodeState extends State<ScanQrCode> {
   Barcode? result;
   QRViewController? controller;
 
-  // In order to get hot reload to work we need to pause the camera if the platform
-  // is android, or resume the camera if the platform is iOS.
-  @override
-  void reassemble() {
-    super.reassemble();
-    if (Platform.isAndroid) {
-      controller!.pauseCamera();
-    } else if (Platform.isIOS) {
-      controller!.resumeCamera();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (result != null) {
-      Future.delayed(
-        Duration.zero,
-        () => Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) =>
-                ScannedQrPreview(scannedData: result!.code ?? ""),
-          ),
-        ),
-      );
-    }
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -145,16 +121,12 @@ class _ScanQrCodeState extends State<ScanQrCode> {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
-      controller.pauseCamera();
-      controller.stopCamera();
-
       result = scanData;
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) =>
-              ScannedQrPreview(scannedData: result!.code ?? ""),
-        ),
-      );
+      if (result != null) {
+        BlocProvider.of<HomeCubit>(context).stopScanner(
+          scannedString: result!.code ?? "",
+        );
+      }
     });
   }
 

@@ -1,0 +1,32 @@
+{
+  "core.fixtures.languageCodes.ar" : "العربية",
+  "core.fixtures.languageCodes.en" : "English",
+  "core.fixtures.ThemeCodes.light" : "نمط نهاري",
+  "core.fixtures.ThemeCodes.dark" : "نمط مظلم",
+
+  "core.common.sellerName" : "اسم البائع:",
+  "core.common.sellerTaxNumber" : "الرقم الضريبي:",
+  "core.common.invoiceDate" : "التاريخ:",
+  "core.common.invoiceTotal" : "المجموع الكامل:",
+  "core.common.taxTotal" : "المجموع الضريبي:",
+  "core.common.areYouSure" : "هل انت متأكد؟",
+  "core.common.areYouSureBody" : "يرجى تأكيد رغبتك في معالجة هذا الإجراء.",
+  "core.common.cancel" : "إلغاء",
+  "core.common.confirm" : "تأكيد",
+
+  "presentation.actions.appLanguage" : "لغة التطبيق:",
+  "presentation.actions.appTheme" : "النمط:",
+  "presentation.actions.settingsHeader" : "الإعدادات",
+  "presentation.actions.faqsHeader" : "الأسئلة الشائعة",
+
+  "presentation.history.deleteConfirmMessage" : "هل أنت متأكد أنك تريد حذف تاريخ الفواتير الممسوحة؟",
+  "presentation.history.emptyHistory" : "لا يوجد فواتير، قم بمسح بعض الأكواد",
+
+  "presentation.home.previewAppHeader" : "نتيجة رمز الاستجابة",
+  "presentation.home.successScanPreviewHeader" : "معلومات الفاتورة",
+  "presentation.home.failingScanPreviewHeader" : "معلومات الرمز:",
+  "presentation.home.featureNotSupportedMessage" : "نعتذر! هذه الميزة غير مدعومة حاليا :(",
+  "presentation.home.invalidScanError" : "إن رمز الستجابة السريع (QR Code) لا يوافق مطالب هيئة الزكاة",
+  "presentation.home.scanFromGallery" : "اختار صورة",
+  "presentation.home.or" : "أو"
+}

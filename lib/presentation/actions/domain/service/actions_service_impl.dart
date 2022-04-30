@@ -1,47 +1,51 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_invoice_qrcode_reader/data/shared_preferences/settings_notifier.dart';
+import 'package:e_invoice_qrcode_reader/presentation/actions/domain/models/faqs_list_model.dart';
+import 'package:e_invoice_qrcode_reader/presentation/actions/domain/models/settings_model.dart';
 
 import '../../../../core/exports.dart';
-import '../../../../data/repositories/invoice/invoice_repository.dart';
 import 'actions_service.dart';
 
 class ActionsServiceImpl implements ActionsService {
-  final InvoiceRepository invoiceRepository;
+  final SettingsNotifier settingsNotifier;
 
-  ActionsServiceImpl({required this.invoiceRepository});
-
-  @override
-  Either<Failure, void> changeLanguage() => FailureHandler.handleFunction<void>(
-        () => invoiceRepository.getAll(),
-    "The Scanned QR Code is not compliant with ZATCA standards",
-  ).fold(
-        (l) => Left(l),
-        (r) {
-      invoiceRepository.deleteAll();
-      return const Right(null);
-    },
-  );
+  ActionsServiceImpl({required this.settingsNotifier});
 
   @override
-  Either<Failure, void> changeTheme() => FailureHandler.handleFunction<void>(
-        () => invoiceRepository.getAll(),
-    "The Scanned QR Code is not compliant with ZATCA standards",
-  ).fold(
-        (l) => Left(l),
-        (r) {
-      invoiceRepository.deleteAll();
-      return const Right(null);
-    },
-  );
+  Either<Failure, SettingsModel> loadSettings() =>
+      FailureHandler.handleEither<SettingsModel>(
+        () => Right(SettingsModel(
+            local: settingsNotifier.getLocale.languageCode,
+            theme: settingsNotifier.getThemeName)),
+        "Error Loading Settings",
+      );
 
   @override
-  Either<Failure, void> loadSettings() => FailureHandler.handleFunction<void>(
-        () => invoiceRepository.getAll(),
-    "The Scanned QR Code is not compliant with ZATCA standards",
-  ).fold(
-        (l) => Left(l),
-        (r) {
-      invoiceRepository.deleteAll();
-      return const Right(null);
-    },
-  );
+  Either<Failure, void> changeLanguage({required String language}) =>
+      FailureHandler.handleEither<void>(
+        () {
+          settingsNotifier.setLocale(language);
+          return const Right(null);
+        },
+        "Error Changing App Language",
+      );
+
+  @override
+  Either<Failure, void> changeTheme({required String theme}) =>
+      FailureHandler.handleEither<void>(
+        () {
+          settingsNotifier.setTheme(theme);
+          return const Right(null);
+        },
+        "Error Changing App Theme",
+      );
+
+  @override
+  Either<Failure, FaqsListModel> loadFaqs() =>
+      FailureHandler.handleEither<FaqsListModel>(
+        () {
+          return Right(FaqsListModel.empty());
+        },
+        "Error Changing App Theme",
+      );
 }

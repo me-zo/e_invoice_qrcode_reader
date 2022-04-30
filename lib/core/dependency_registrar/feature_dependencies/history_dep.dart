@@ -3,16 +3,15 @@ import 'package:e_invoice_qrcode_reader/presentation/history/domain/service/hist
 import 'package:e_invoice_qrcode_reader/presentation/history/presentation/manager/history_cubit.dart';
 import 'package:get_it/get_it.dart';
 
-Future<void> historyDependencies(GetIt sl) async {
-  sl.registerFactory<HistoryService>(
+void historyDependencies(GetIt locator) {
+  locator.registerFactory<HistoryService>(
     () => HistoryServiceImpl(
-      invoiceRepository: sl(),
+      invoiceRepository: locator(),
     ),
   );
 
-  sl.registerFactory(
-    () => HistoryCubit(
-      historyService: sl(),
+  locator.registerSingleton<HistoryCubit>(HistoryCubit(
+      historyService: locator(),
     ),
   );
 }
