@@ -12,34 +12,37 @@ If you're familiar with the situation you probably noticed that there is a simil
 
 ## Application ScreenShots
 
-###Home Page
+### Home Page
 
 ![Home Dark Theme](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Home-DarkTheme.PNG)
 ![Home Light Theme](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Home-LightTheme.PNG)
+
 >Note: The button has a beating animation which is why it's different
 
-###Camera And Settings
+### Camera And Settings
 
 ![Camera Scanner](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/CameraScanner.jpg) ![Settings](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/actions.settings.jpg)
 
-###Successful Scan
+### Successful Scan
 
 ![Successful Scan](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Successful%20Scan.PNG)
 
-###Failed Scan
+### Failed Scan
 
 ![Failed Scan](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Failed%20Scan.PNG)
 
-###History
+### History
 
 ![History](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Deleting%20History.PNG)
 >Note: History is stored using a Local Database [ObjectBox](https://pub.dev/packages/objectbox) which is why I wasn't able to host the app as a website
 
-###Frequently Asked Questions
+
+### Frequently Asked Questions
+
 
 ![Faqs](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Faqs.PNG)
 
-##The App is not available in stores Yet, Thus In Case you want to Try/Use it From [My Drive](https://drive.google.com/file/d/1xo0QSd-fOL5WgA4epOrsWRx0mz28Dk9Q/view?usp=sharing) or from download the [app-release.apk](https://github.com/Mezo0099/e_invoice_qrcode_reader/tree/master/build/app)
+## The App is not available in stores Yet, Thus In Case you want to Try/Use it From [My Drive](https://drive.google.com/file/d/1xo0QSd-fOL5WgA4epOrsWRx0mz28Dk9Q/view?usp=sharing) or from download the [app-release.apk](https://github.com/Mezo0099/e_invoice_qrcode_reader/tree/master/build/app)
 
 
 
