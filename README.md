@@ -1,16 +1,12 @@
-# e_invoice_qrcode_reader
+# E-Invoice QR Code Reader KSA
 
-A new Flutter project.
+E-Invoice QR Reader: This application was developed with the aim of displaying the QR Code contents of any E-Invoice that is compliant with the Zakat and Tax Authority in Saudi Arabia.
 
-## Getting Started
+## Where Did The Application Idea Come From ? 
+After the Zakat and Tax Authority in Saudi Arabia Enforced new rules upon E-Invoicing some of those rules indicated that every E-Invoice has to have a QR Code that is responsible for confirming the identity of the merchant and weather they are the rules or not.
+One of the rules is "Compliant E-Invoices Have To Have a generated QR-Code that is Encrypted in Base64 and formatted in TLV format" when scanned Certain information have show to the customer.
 
-This project is a starting point for a Flutter application.
+## Implementation
 
-A few resources to get you started if this is your first Flutter project:
+If you're familiar with the situation you probably noticed that there is a similar app on the store [E-Invoice QR Reader KSA](https://play.google.com/store/apps/details?id=com.posbankbh.einvoiceqrreader) I Basically [Reverse Engineered](https://en.wikipedia.org/wiki/Reverse_engineering) that app and modified the UI to my liking as well as added an additional theme option supporting light and dark themes.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
