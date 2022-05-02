@@ -14,13 +14,13 @@ If you're familiar with the situation you probably noticed that there is a simil
 
 ### Home Page
 
-![Home Dark Theme](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Home.PNG)
+![Home](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Home.PNG)
 
 >Note: The button has a beating animation which is why it's different
 
 ### Camera And Settings
 
-![Camera Scanner](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/settings-camera.png)
+![Camera Scanner and settings pages](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/settings-camera.PNG)
 
 ### Successful Scan
 
