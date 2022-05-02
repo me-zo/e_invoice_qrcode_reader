@@ -72,7 +72,6 @@ flutter:
     - lib/app/localization/resources/ar.json
     - assets/images/logo.png
     - assets/images/1x/logo.png
-    - google_fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

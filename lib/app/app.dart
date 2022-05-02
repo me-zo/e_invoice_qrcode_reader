@@ -1,7 +1,3 @@
-import 'package:e_invoice_qrcode_reader/app/localization/resources.dart';
-import 'package:e_invoice_qrcode_reader/data/shared_preferences/settings_notifier.dart';
-import 'package:e_invoice_qrcode_reader/presentation/actions/presentation/manager/actions_cubit.dart';
-import 'package:e_invoice_qrcode_reader/presentation/history/presentation/manager/history_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,9 +6,13 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../core/dependency_registrar/dependencies.dart';
 import '../core/exports.dart';
-import '../presentation/home/presentation/manager/home_cubit.dart';
-import '../presentation/home/presentation/screens/splash.dart';
-import '../presentation/route_generator.dart';
+import '../data/shared_preferences/settings_notifier.dart';
+import '../features/actions/presentation/manager/actions_cubit.dart';
+import '../features/history/presentation/manager/history_cubit.dart';
+import '../features/home/presentation/manager/home_cubit.dart';
+import '../features/home/presentation/screens/splash.dart';
+import '../features/route_generator.dart';
+import 'localization/resources.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatefulWidget {

@@ -1,7 +1,8 @@
-import 'package:e_invoice_qrcode_reader/presentation/home/presentation/manager/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../manager/home_cubit.dart';
 
 class ScanQrCode extends StatefulWidget {
   const ScanQrCode({Key? key}) : super(key: key);
@@ -46,9 +47,17 @@ class _ScanQrCodeState extends State<ScanQrCode> {
                               builder:
                                   (context, AsyncSnapshot<bool?> snapshot) {
                                 if (snapshot.data ?? false) {
-                                  return Icon(Icons.flash_off,color: Theme.of(context).colorScheme.tertiary,);
+                                  return Icon(
+                                    Icons.flash_off,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                  );
                                 } else {
-                                  return Icon(Icons.flash_on,color: Theme.of(context).colorScheme.tertiary,);
+                                  return Icon(
+                                    Icons.flash_on,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                  );
                                 }
                               },
                             )),
@@ -80,14 +89,26 @@ class _ScanQrCodeState extends State<ScanQrCode> {
               if (snapshot.data != null) {
                 switch (snapshot.data) {
                   case CameraFacing.front:
-                    return Icon(Icons.camera_rear,color: Theme.of(context).colorScheme.tertiary,);
+                    return Icon(
+                      Icons.camera_rear,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    );
                   case CameraFacing.back:
-                    return Icon(Icons.camera_front,color: Theme.of(context).colorScheme.tertiary,);
+                    return Icon(
+                      Icons.camera_front,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    );
                   default:
-                    return Icon(Icons.camera,color: Theme.of(context).colorScheme.tertiary,);
+                    return Icon(
+                      Icons.camera,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    );
                 }
               } else {
-                return Icon(Icons.camera,color: Theme.of(context).colorScheme.tertiary,);
+                return Icon(
+                  Icons.camera,
+                  color: Theme.of(context).colorScheme.tertiary,
+                );
               }
             },
           )),

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_invoice_qrcode_reader/presentation/actions/domain/models/faqs_list_model.dart';
-import 'package:e_invoice_qrcode_reader/presentation/actions/domain/models/settings_model.dart';
+import '../../domain/models/faqs_list_model.dart';
+import '../../domain/models/settings_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/service/actions_service.dart';

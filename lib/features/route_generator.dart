@@ -1,4 +1,4 @@
-import 'package:e_invoice_qrcode_reader/presentation/history/presentation/history_page.dart';
+import 'history/presentation/history_page.dart';
 import 'package:flutter/material.dart';
 
 import 'home/presentation/home_page.dart';

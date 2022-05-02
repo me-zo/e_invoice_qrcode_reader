@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_invoice_qrcode_reader/presentation/history/domain/models/invoice_list_model.dart';
+import '../../domain/models/invoice_list_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/service/history_service.dart';

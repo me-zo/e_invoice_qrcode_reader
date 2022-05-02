@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_invoice_qrcode_reader/data/shared_preferences/settings_notifier.dart';
-import 'package:e_invoice_qrcode_reader/presentation/actions/domain/models/faqs_list_model.dart';
-import 'package:e_invoice_qrcode_reader/presentation/actions/domain/models/settings_model.dart';
+import '../models/faqs_list_model.dart';
+import '../models/settings_model.dart';
 
 import '../../../../core/exports.dart';
 import 'actions_service.dart';
