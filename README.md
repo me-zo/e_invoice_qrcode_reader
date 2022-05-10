@@ -12,11 +12,14 @@ If you're familiar with the situation you probably noticed that there is a simil
 
 ## Application ScreenShots
 
-### Home Page
+## Home Page
 
 ![Home](https://raw.githubusercontent.com/Mezo0099/e_invoice_qrcode_reader/master/README/images/Home.PNG)
 
->Note: The button has a beating animation which is why it's different
+## Demonstration
+<img src="https://github.com/Mezo0099/e_invoice_qrcode_reader/blob/master/README/demo.gif?raw=true" height="600px" width="350px"/>
+
+> Realtime Full Demonstration
 
 ### Camera And Settings
 
