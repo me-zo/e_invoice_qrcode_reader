@@ -1,48 +1,46 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_invoice_qrcode_reader/core/dependency_registrar/dependencies.dart';
 import 'package:e_invoice_qrcode_reader/data/shared_preferences/settings_notifier.dart';
-import '../models/faqs_list_model.dart';
-import '../models/settings_model.dart';
 
 import '../../../../core/exports.dart';
+import '../models/faqs_list_model.dart';
+import '../models/settings_model.dart';
 import 'actions_service.dart';
 
 class ActionsServiceImpl implements ActionsService {
-  final SettingsNotifier settingsNotifier;
-
-  ActionsServiceImpl({required this.settingsNotifier});
+  final SettingsNotifier _settingsNotifier = sl();
 
   @override
   Either<Failure, SettingsModel> loadSettings() =>
-      FailureHandler.handleEither<SettingsModel>(
-        () => Right(SettingsModel(
-            local: settingsNotifier.getLocale.languageCode,
-            theme: settingsNotifier.getThemeName)),
-        "Error Loading Settings",
+      ErrorHandler.handle<SettingsModel>(
+        () => Right(
+          SettingsModel(
+              local: _settingsNotifier.getLocale.languageCode,
+              theme: _settingsNotifier.getThemeName),
+        ),
       );
 
   @override
   Either<Failure, void> changeLanguage({required String language}) =>
-      FailureHandler.handleEither<void>(
+      ErrorHandler.handle<void>(
         () {
-          settingsNotifier.setLocale(language);
+          _settingsNotifier.setLocale(language);
           return const Right(null);
         },
-        "Error Changing App Language",
       );
 
   @override
   Either<Failure, void> changeTheme({required String theme}) =>
-      FailureHandler.handleEither<void>(
+      ErrorHandler.handle<void>(
         () {
-          settingsNotifier.setTheme(theme);
+          _settingsNotifier.setTheme(theme);
           return const Right(null);
         },
-        "Error Changing App Theme",
       );
 
   @override
   Either<Failure, FaqsListModel> loadFaqs() =>
-      FailureHandler.handleEither<FaqsListModel>(
+      ErrorHandler.handle<FaqsListModel>(
         () {
           return Right(FaqsListModel(questions: [
             FaqsQuestionModel(
@@ -53,6 +51,5 @@ class ActionsServiceImpl implements ActionsService {
                 answer: "presentation.actions.faqsQuestion2Body"),
           ]));
         },
-        "Error Changing App Theme",
       );
 }

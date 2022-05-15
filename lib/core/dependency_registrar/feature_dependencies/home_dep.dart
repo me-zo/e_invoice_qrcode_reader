@@ -5,15 +5,7 @@ import '../../../../features/home/domain/service/home_service_impl.dart';
 import '../../../../features/home/presentation/manager/home_cubit.dart';
 
 void homeDependencies(GetIt locator) {
-  locator.registerFactory<HomeService>(
-    () => HomeServiceImpl(
-      invoiceRepository: locator(),
-    ),
-  );
+  locator.registerFactory<HomeService>(() => HomeServiceImpl());
 
-  locator.registerSingleton<HomeCubit>(
-    HomeCubit(
-      homeService: locator(),
-    ),
-  );
+  locator.registerSingleton<HomeCubit>(HomeCubit());
 }

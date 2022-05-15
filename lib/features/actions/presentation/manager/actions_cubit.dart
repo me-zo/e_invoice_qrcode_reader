@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:e_invoice_qrcode_reader/core/dependency_registrar/dependencies.dart';
 import '../../domain/models/faqs_list_model.dart';
 import '../../domain/models/settings_model.dart';
 import 'package:flutter/material.dart';
@@ -8,17 +9,17 @@ import '../../domain/service/actions_service.dart';
 part 'actions_state.dart';
 
 class ActionsCubit extends Cubit<ActionsState> {
-  final ActionsService actionsService;
+  final ActionsService _actionsService = sl();
 
-  ActionsCubit({required this.actionsService}) : super(ActionsInitial());
+  ActionsCubit() : super(ActionsInitial());
 
   SettingsModel settingsModel = SettingsModel.empty();
   String selectedLanguage = "";
   String selectedTheme = "";
-  late List<bool> faqsIsExpanded;
+  List<bool> faqsIsExpanded = [];
   void prepareSettings() {
     emit(Loading());
-    var result = actionsService.loadSettings();
+    var result = _actionsService.loadSettings();
     result.fold(
       (l) => emit(ShowError(message: l.message)),
       (r) {
@@ -32,7 +33,7 @@ class ActionsCubit extends Cubit<ActionsState> {
 
   void prepareFaqs() {
     emit(Loading());
-    var result = actionsService.loadFaqs();
+    var result = _actionsService.loadFaqs();
     result.fold(
       (l) => emit(ShowError(message: l.message)),
       (r) {
@@ -43,7 +44,7 @@ class ActionsCubit extends Cubit<ActionsState> {
   }
 
   void changeTheme(String theme) {
-    var result = actionsService.changeTheme(theme: theme);
+    var result = _actionsService.changeTheme(theme: theme);
     result.fold(
       (l) => emit(ShowError(message: l.message)),
       (r) => emit(DisplaySettings(info: settingsModel)),
@@ -51,7 +52,7 @@ class ActionsCubit extends Cubit<ActionsState> {
   }
 
   void changeLanguage(String language) {
-    var result = actionsService.changeLanguage(language: language);
+    var result = _actionsService.changeLanguage(language: language);
     result.fold(
       (l) => emit(ShowError(message: l.message)),
       (r) => emit(DisplaySettings(info: settingsModel)),

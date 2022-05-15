@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
+import '../../../../core/exports.dart';
 import '../models/faqs_list_model.dart';
 import '../models/settings_model.dart';
 
-import '../../../../core/failures/failure.dart';
 
 abstract class ActionsService {
   Either<Failure, SettingsModel> loadSettings();

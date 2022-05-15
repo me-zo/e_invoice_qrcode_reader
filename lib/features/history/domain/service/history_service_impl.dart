@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_invoice_qrcode_reader/core/dependency_registrar/dependencies.dart';
 
 import '../../../../core/common/models/invoice_model.dart';
 import '../../../../core/exports.dart';
@@ -7,15 +8,13 @@ import '../models/invoice_list_model.dart';
 import 'history_service.dart';
 
 class HistoryServiceImpl implements HistoryService {
-  final InvoiceRepository invoiceRepository;
-
-  HistoryServiceImpl({required this.invoiceRepository});
+  final InvoiceRepository _invoiceRepository = sl();
 
   @override
   Either<Failure, InvoiceListModel> invoiceList() =>
-      FailureHandler.handleEither<InvoiceListModel>(
+      ErrorHandler.handle<InvoiceListModel>(
         () {
-          var r = invoiceRepository.getAll();
+          var r = _invoiceRepository.getAll();
           InvoiceListModel invoices = InvoiceListModel(
             invoices: List.generate(
               r.length,
@@ -31,12 +30,10 @@ class HistoryServiceImpl implements HistoryService {
           );
           return Right(invoices);
         },
-        "An error happened while fetching the history",
       );
 
   @override
-  Either<Failure, void> clearList() => FailureHandler.handleEither<void>(
-        () => Right(invoiceRepository.deleteAll()),
-        "An Error happened when clearing history",
+  Either<Failure, void> clearList() => ErrorHandler.handle<void>(
+        () => Right(_invoiceRepository.deleteAll()),
       );
 }
