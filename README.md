@@ -1,6 +1,12 @@
+
+```diff
+-This project was sold and thus further development here is seized based on the client's request
+```
+
 # E-Invoice QR Code Reader KSA Flutter Application
 
 E-Invoice QR Reader: This application was developed with the aim of displaying the QR Code contents of any E-Invoice that is compliant with the Zakat and Tax Authority in Saudi Arabia.
+
 
 ## Where Did The Application Idea Come From ?
 After the Zakat and Tax Authority in Saudi Arabia Enforced new rules upon E-Invoicing some of those rules indicated that every E-Invoice has to have a QR Code that is responsible for confirming the identity of the merchant and weather they are the rules or not.
